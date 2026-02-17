@@ -1,25 +1,14 @@
-/* Couleurs de marque BoostMark */
-:root {
-    --bleu-nuit: #001219;
-    --vert-vif: #39FF14;
-    --vert-profond: #002222;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
-body {
-    background: linear-gradient(135deg, var(--bleu-nuit) 0%, var(--vert-profond) 100%);
-    color: #ffffff;
-    scroll-behavior: smooth;
-}
+* { font-family: 'Inter', sans-serif; }
 
-/* Style personnalisé pour vos boutons de conversion */
-.btn-boost {
-    background-color: var(--vert-vif);
-    color: #000;
-    font-weight: bold;
-    transition: transform 0.3s ease;
-}
+.hero { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+.plan { transition: all 0.3s ease; }
+.plan:hover { transform: scale(1.05); box-shadow: 0 20px 40px rgba(59,130,246,0.4); }
+.testimonial { background: linear-gradient(135deg, #1f2937, #374151); border-radius: 20px; }
+.cta { transition: all 0.3s; }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
 
-.btn-boost:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-}
+/* Animations Stackmatix */
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+.fade-in-up { animation: fadeInUp 0.8s ease-out; }
