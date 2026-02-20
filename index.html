@@ -1,431 +1,1248 @@
 <!DOCTYPE html>
-
-<html class="dark" lang="fr"><head>
+<html lang="fr" class="dark">
+<head>
 <meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BoostMark | Agence SaaS de Conversion Ultra-Moderne</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "primary": "#a3e635",
-                        "background-light": "#f6f5f8",
-                        "background-dark": "#020b0d",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
-            },
-        }</script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#a3e635",
+        "background-dark": "#020b0d",
+      },
+      fontFamily: { "display": ["Inter", "sans-serif"] }
+    }
+  }
+}
+</script>
 <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glass-primary {
-            background: rgba(163, 230, 53, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(163, 230, 53, 0.2);
-        }
-        .bg-gradient-main {
-            background: radial-gradient(circle at top right, #062c30 0%, #020b0d 60%),
-                        radial-gradient(circle at bottom left, #083344 0%, #020b0d 60%);
-        }
-        .glow-button {
-            box-shadow: 0 0 20px rgba(163, 230, 53, 0.4);
-        }
-        .whatsapp-pulse {
-            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-            animation: pulse-green 2s infinite;
-        }
-        @keyframes pulse-green {
-            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
-            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-        }
-        .video-container {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
-        }
-        .video-container video {
-            min-width: 100%;
-            min-height: 100%;
-            object-fit: cover;
-            opacity: 0.3;
-        }
-    </style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; overflow-x: hidden; background: #020b0d; color: #f1f5f9; }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #020b0d; }
+  ::-webkit-scrollbar-thumb { background: #a3e635; border-radius: 3px; }
+
+  /* Glass */
+  .glass {
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.09);
+  }
+  .glass-primary {
+    background: rgba(163,230,53,0.1);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(163,230,53,0.25);
+  }
+
+  /* Background */
+  .bg-main {
+    background:
+      radial-gradient(ellipse at 80% 10%, rgba(6,44,48,0.9) 0%, transparent 55%),
+      radial-gradient(ellipse at 10% 90%, rgba(8,51,68,0.7) 0%, transparent 55%),
+      #020b0d;
+  }
+
+  /* Glow button */
+  .glow-btn { box-shadow: 0 0 22px rgba(163,230,53,0.45); }
+  .glow-btn:hover { box-shadow: 0 0 36px rgba(163,230,53,0.65); transform: translateY(-2px); }
+
+  /* WhatsApp pulse */
+  @keyframes pulse-green {
+    0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34,197,94,0.7); }
+    70%  { transform: scale(1);    box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34,197,94,0); }
+  }
+  .wa-pulse { animation: pulse-green 2s infinite; }
+
+  /* Animate on scroll */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* Stagger delay helpers */
+  .delay-1 { transition-delay: 0.1s; }
+  .delay-2 { transition-delay: 0.2s; }
+  .delay-3 { transition-delay: 0.3s; }
+  .delay-4 { transition-delay: 0.4s; }
+
+  /* Hero gradient text */
+  .text-gradient {
+    background: linear-gradient(135deg, #a3e635 0%, #65a30d 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Mobile menu */
+  #mobile-menu {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease;
+    opacity: 0;
+  }
+  #mobile-menu.open {
+    max-height: 400px;
+    opacity: 1;
+  }
+
+  /* Video BG */
+  .video-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+  .video-bg video { min-width: 100%; min-height: 100%; object-fit: cover; opacity: 0.2; }
+  .video-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to bottom, rgba(2,11,13,0.3) 0%, rgba(2,11,13,0.85) 100%);
+  }
+
+  /* Floating particles */
+  @keyframes float-up {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+    10%  { opacity: 0.6; }
+    90%  { opacity: 0.2; }
+    100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+  }
+  .particle {
+    position: absolute;
+    width: 4px; height: 4px;
+    background: #a3e635;
+    border-radius: 50%;
+    animation: float-up linear infinite;
+    pointer-events: none;
+  }
+
+  /* Counter */
+  .counter-value { font-variant-numeric: tabular-nums; }
+
+  /* Pricing toggle */
+  .toggle-pill {
+    position: relative;
+    width: 52px; height: 28px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.3s;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .toggle-pill.active { background: #a3e635; }
+  .toggle-dot {
+    position: absolute;
+    top: 3px; left: 3px;
+    width: 20px; height: 20px;
+    background: white;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+  .toggle-pill.active .toggle-dot { transform: translateX(24px); }
+
+  /* Toast */
+  #toast {
+    position: fixed; bottom: 6rem; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: rgba(163,230,53,0.15);
+    border: 1px solid rgba(163,230,53,0.4);
+    color: #a3e635;
+    padding: 0.75rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    pointer-events: none;
+    backdrop-filter: blur(12px);
+  }
+  #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  /* Scroll progress */
+  #scroll-progress {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: linear-gradient(to right, #a3e635, #65a30d);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.1s linear;
+  }
+
+  /* Card hover */
+  .service-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .service-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(163,230,53,0.12); }
+
+  /* Pricing card highlight */
+  .pricing-featured {
+    background: rgba(163,230,53,0.08);
+    border: 1px solid rgba(163,230,53,0.4);
+    transform: scale(1.04);
+  }
+
+  /* Testimonials slider */
+  .testimonials-track { display: flex; gap: 1.5rem; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+  .testimonial-card { min-width: 420px; flex-shrink: 0; }
+  @media (max-width: 640px) { .testimonial-card { min-width: 90vw; } }
+
+  /* FAQ */
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, opacity 0.3s ease; opacity: 0; }
+  .faq-answer.open { max-height: 300px; opacity: 1; }
+  .faq-icon { transition: transform 0.3s; }
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  /* Form success */
+  .form-success { display: none; }
+
+  /* Loader overlay */
+  #page-loader {
+    position: fixed; inset: 0; z-index: 99999;
+    background: #020b0d;
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.6s ease;
+  }
+  #page-loader.hidden { opacity: 0; pointer-events: none; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loader-ring {
+    width: 48px; height: 48px;
+    border: 3px solid rgba(163,230,53,0.2);
+    border-top-color: #a3e635;
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+  }
+
+  /* Cursor glow (desktop only) */
+  #cursor-glow {
+    position: fixed;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(163,230,53,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    transition: transform 0.15s ease;
+    top: -160px; left: -160px;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display selection:bg-primary/30 overflow-x-hidden">
-<!-- Floating WhatsApp CTA -->
-<a class="fixed bottom-8 right-8 z-50 flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-bold whatsapp-pulse transition-transform hover:scale-110 active:scale-95 shadow-lg" href="#">
-<span class="material-symbols-outlined">chat</span>
-<span>Contactez-nous</span>
+<body class="bg-main selection:bg-primary/30">
+
+<!-- Page Loader -->
+<div id="page-loader">
+  <div class="text-center">
+    <div class="loader-ring mx-auto mb-4"></div>
+    <p class="text-primary font-bold tracking-widest text-xs uppercase">BoostMark</p>
+  </div>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div id="scroll-progress"></div>
+
+<!-- Cursor Glow (desktop) -->
+<div id="cursor-glow"></div>
+
+<!-- Toast Notification -->
+<div id="toast">✓ Action effectuée avec succès !</div>
+
+<!-- Floating WhatsApp -->
+<a href="https://wa.me/212720909638" target="_blank" rel="noopener"
+   class="fixed bottom-8 right-8 z-50 flex items-center gap-2 bg-green-500 text-white px-5 py-3 rounded-full font-bold wa-pulse transition-all hover:scale-110 active:scale-95 shadow-xl">
+  <span class="material-symbols-outlined" style="font-size:20px">chat</span>
+  <span class="text-sm">Contactez-nous</span>
 </a>
-<div class="relative min-h-screen bg-gradient-main">
-<!-- Navbar -->
-<header class="sticky top-0 z-40 w-full px-6 py-4 glass border-b border-white/10">
-<div class="max-w-7xl mx-auto flex items-center justify-between">
-<div class="flex items-center gap-3">
-<img alt="BoostMark Logo" class="h-10 w-auto object-contain" src="{{DATA:IMAGE:IMAGE_2}}"/>
-</div>
-<nav class="hidden md:flex items-center gap-10">
-<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#services">Services</a>
-<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#pricing">Tarifs</a>
-<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#testimonials">Avis</a>
-<a class="text-sm font-medium text-slate-300 hover:text-primary transition-colors" href="#stats">Impact</a>
-</nav>
-<div class="flex items-center gap-4">
-<button class="hidden sm:block text-sm font-semibold text-white px-5 py-2 hover:text-primary transition-colors">Se connecter</button>
-<button class="bg-primary text-white text-sm font-bold px-6 py-2.5 rounded-lg glow-button hover:bg-primary/90 transition-all">Démarrer</button>
-</div>
-</div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="fixed top-0 z-40 w-full px-6 py-4 transition-all duration-300">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2 group">
+      <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+        <span class="material-symbols-outlined text-white" style="font-size:18px">bolt</span>
+      </div>
+      <span class="text-white font-black text-xl tracking-tight">Boost<span class="text-primary">Mark</span></span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#services" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+        Services
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#pricing" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+        Tarifs
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#testimonials" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+        Avis
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#faq" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+        FAQ
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#contact" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+        Contact
+        <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <button onclick="showToast('Connectez-vous via notre app mobile !')" class="hidden sm:block text-sm font-semibold text-white px-4 py-2 hover:text-primary transition-colors">Se connecter</button>
+      <a href="#contact" class="bg-primary text-white text-sm font-bold px-5 py-2.5 rounded-lg glow-btn transition-all inline-block">Démarrer</a>
+      <!-- Mobile hamburger -->
+      <button id="hamburger" class="md:hidden w-10 h-10 glass rounded-lg flex items-center justify-center" aria-label="Menu">
+        <div class="hamburger-icon">
+          <span class="block w-5 h-0.5 bg-white mb-1 transition-all duration-300" id="h1"></span>
+          <span class="block w-5 h-0.5 bg-white mb-1 transition-all duration-300" id="h2"></span>
+          <span class="block w-5 h-0.5 bg-white transition-all duration-300" id="h3"></span>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden">
+    <div class="glass mt-3 rounded-2xl p-6 mx-0 flex flex-col gap-4">
+      <a href="#services"  class="text-slate-300 hover:text-primary font-medium transition-colors py-2 border-b border-white/5" onclick="closeMobileMenu()">Services</a>
+      <a href="#pricing"   class="text-slate-300 hover:text-primary font-medium transition-colors py-2 border-b border-white/5" onclick="closeMobileMenu()">Tarifs</a>
+      <a href="#testimonials" class="text-slate-300 hover:text-primary font-medium transition-colors py-2 border-b border-white/5" onclick="closeMobileMenu()">Avis</a>
+      <a href="#faq"       class="text-slate-300 hover:text-primary font-medium transition-colors py-2 border-b border-white/5" onclick="closeMobileMenu()">FAQ</a>
+      <a href="#contact"   class="text-slate-300 hover:text-primary font-medium transition-colors py-2" onclick="closeMobileMenu()">Contact</a>
+      <a href="#contact" class="mt-2 bg-primary text-white font-bold py-3 rounded-xl text-center glow-btn transition-all" onclick="closeMobileMenu()">Démarrer maintenant →</a>
+    </div>
+  </div>
 </header>
-<!-- Hero Section -->
-<section class="relative pt-20 pb-32 px-6 overflow-hidden"><div class="video-container">
-<video autoplay="" loop="" muted="" playsinline="">
-<source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-loops-2751-large.mp4" type="video/mp4"/>
-</video>
-</div>
-<div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
-<div class="z-10">
-<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest mb-6">
-<span class="relative flex h-2 w-2">
-<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
-<span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
-</span>
-                        Propulsé par l'IA &amp; le Design
-                    </div>
-<h1 class="text-6xl md:text-8xl font-black text-white leading-[1.1] tracking-tight mb-6">
-                        Boost<span class="text-primary">Mark</span>
-</h1>
-<p class="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed max-w-xl mb-10">
-                        Boostez votre conversion avec une expertise professionnelle et un design ultra-moderne conçu pour les leaders du marché.
-                    </p>
-<div class="flex flex-col sm:flex-row gap-4">
-<button class="px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg glow-button hover:-translate-y-1 transition-all">
-                            Lancer mon projet
-                        </button>
-<button class="px-8 py-4 glass text-white font-bold rounded-xl text-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2">
-<span class="material-symbols-outlined">play_circle</span>
-                            Voir la démo
-                        </button>
-</div>
-</div>
-<div class="relative">
-<div class="relative rounded-2xl overflow-hidden glass p-2">
-<img class="w-full h-[500px] object-cover rounded-xl" data-alt="Modern high-tech analytics dashboard interface on screens" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjqF9tfMi8nd7GWkW0dbq2p0sZGywaqfrNjfQzlDLObLs8mqgn85N5U25bHNB6qJtHnVylJS3sUrH_MJ2RSExUK-3xBd457s7KAaVRasU-Kz15TXkJAx3ijJuIrBDXLLWBEZQ7PAGmzQDvqAvk8aZMgp2-hs5aBwSuLb_KRMgHXBUpd6sGn8Si7uwqirj4x7ACVax72rXJhqruSp9Vme78ZmvybQX78xAA63ylDDDrZkfT_kbNFxRMmipPynE6dBsQZbUM9_pZk2s"/>
-<div class="absolute bottom-6 left-6 right-6 glass-primary p-6 rounded-xl">
-<div class="flex items-center gap-4">
-<div class="bg-primary/20 p-2 rounded-lg">
-<span class="material-symbols-outlined text-primary">trending_up</span>
-</div>
-<div>
-<p class="text-white font-bold text-lg">+324% Croissance</p>
-<p class="text-slate-400 text-sm">Moyenne observée chez nos clients</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Stats Section -->
-<section class="py-20 px-6" id="stats">
-<div class="max-w-7xl mx-auto">
-<div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
-<div class="glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all">
-<p class="text-primary text-sm font-bold uppercase tracking-widest mb-2">Talents</p>
-<h3 class="text-5xl font-black text-white mb-2">100+</h3>
-<p class="text-slate-400 text-sm">Experts Freelances</p>
-<div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all"></div>
-</div>
-<div class="glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all">
-<p class="text-primary text-sm font-bold uppercase tracking-widest mb-2">Volume</p>
-<h3 class="text-5xl font-black text-white mb-2">2M<span class="text-2xl">DHS</span></h3>
-<p class="text-slate-400 text-sm">Chiffre d'Affaires</p>
-<div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all"></div>
-</div>
-<div class="glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all">
-<p class="text-primary text-sm font-bold uppercase tracking-widest mb-2">Confiance</p>
-<h3 class="text-5xl font-black text-white mb-2">95%</h3>
-<p class="text-slate-400 text-sm">Taux de Rétention</p>
-<div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all"></div>
-</div>
-<div class="glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all">
-<p class="text-primary text-sm font-bold uppercase tracking-widest mb-2">Vitesse</p>
-<h3 class="text-5xl font-black text-white mb-2">7<span class="text-2xl">j</span></h3>
-<p class="text-slate-400 text-sm">Délai Moyen</p>
-<div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all"></div>
-</div>
-</div>
-</div>
-</section>
-<!-- Services Section -->
-<section class="py-24 px-6 bg-white/[0.02]" id="services">
-<div class="max-w-7xl mx-auto">
-<div class="mb-16 text-center">
-<h2 class="text-4xl md:text-5xl font-black text-white mb-4">Nos Services</h2>
-<p class="text-slate-400 text-lg max-w-2xl mx-auto">Des solutions sur mesure pour transformer votre vision en résultats tangibles.</p>
-</div>
-<div class="grid md:grid-cols-2 gap-8">
-<!-- Service 1 -->
-<div class="group relative overflow-hidden rounded-3xl glass transition-all hover:-translate-y-2">
-<div class="h-64 overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Digital marketing strategy and growth assets" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-3YddBb9FFdgughXh1xWPzulf7KD_8H9vyVU0klMnZgpXJydlnFltgP4QjOOPaKg3Rcysb7t6HAWQa5viRet_9IR3uLweOg2Rp7FGBqGtgPsYEZiNOE2oPSpLNkPB_jFyQVQvikt_wANqPJ9N4K0oZjEQefa7f-AW1sO8T07_XGMwWvPcSN6ep_USMOvxnXPrO0kb3Hir_GKOeF3Cb2Mp6evNdReR8mj8yBs_VRB-kfLp3BSeuMRKlLgVp9Lw7DNrmaEbpekZJuw"/>
-<div class="absolute inset-0 bg-gradient-to-t from-[#0a0712] via-transparent to-transparent"></div>
-</div>
-<div class="p-8">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-2xl font-bold text-white uppercase tracking-tight">ESSENTIEL</h3>
-<span class="bg-primary/20 text-primary px-4 py-1 rounded-full text-sm font-bold">790 DHS</span>
-</div>
-<p class="text-slate-400 mb-6 leading-relaxed">Pack de démarrage rapide pour visibilité immédiate. Idéal pour les nouveaux projets cherchant un impact visuel fort et une structure de base solide.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Design UI/UX Fondamental
-                                </li>
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Landing Page Optimisée
-                                </li>
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Audit SEO Technique
-                                </li>
-</ul>
-<button class="w-full py-3 border border-white/10 rounded-xl font-bold text-white hover:bg-white/5 transition-all">Choisir l'Essentiel</button>
-</div>
-</div>
-<!-- Service 2 -->
-<div class="group relative overflow-hidden rounded-3xl glass border-primary/30 transition-all hover:-translate-y-2">
-<div class="h-64 overflow-hidden">
-<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Professional business meeting and data analysis" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0BTGaAgVZcCtG10hJjq4ZJ8LJ31V6FoWFzngl3unui6de1mgJ_SeKUup7zEY4bgS1K9r-5IC3u0QcUKwwsSzjHwns3DesPo7Cf2e8TighjJ5BumheHi8eZAzagR0r8CTavsbalMp7RDBvXqxTbJXLJ80e-FlvLNP4-2LOFw7n7tmQd0-_HOddMn9nUFr7Qa5wTVV-IZBeAcbBy8BbJW02AEL-McIuntPY60pd0NJLtDVLCVZWSNk8vDAquAp4u_TOCtk4kpSz1uI"/>
-<div class="absolute inset-0 bg-gradient-to-t from-[#0a0712] via-transparent to-transparent"></div>
-</div>
-<div class="p-8">
-<div class="flex justify-between items-start mb-4">
-<h3 class="text-2xl font-bold text-white uppercase tracking-tight">PREMIUM</h3>
-<span class="bg-primary text-white px-4 py-1 rounded-full text-sm font-bold">2990 DHS/mois</span>
-</div>
-<p class="text-slate-400 mb-6 leading-relaxed">Gestion continue et croissance accélérée. Une suite complète d'outils et d'expertise pour dominer votre marché de manière durable.</p>
-<ul class="space-y-3 mb-8">
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Accompagnement Stratégique
-                                </li>
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    A/B Testing &amp; Optimisation de Conversion
-                                </li>
-<li class="flex items-center gap-3 text-sm text-slate-300">
-<span class="material-symbols-outlined text-primary text-sm">check_circle</span>
-                                    Support Prioritaire 24/7
-                                </li>
-</ul>
-<button class="w-full py-3 bg-primary rounded-xl font-bold text-white glow-button hover:bg-primary/90 transition-all">Choisir le Premium</button>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Pricing Section -->
-<section class="py-24 px-6" id="pricing">
-<div class="max-w-7xl mx-auto">
-<div class="mb-16 text-center">
-<h2 class="text-4xl md:text-5xl font-black text-white mb-4">Tarification Transparente</h2>
-<p class="text-slate-400 text-lg">Choisissez le plan qui correspond à vos ambitions.</p>
-</div>
-<div class="grid lg:grid-cols-3 gap-8">
-<!-- Basic -->
-<div class="glass p-10 rounded-3xl flex flex-col hover:border-white/20 transition-all">
-<h4 class="text-xl font-bold text-white mb-2">Starter</h4>
-<div class="flex items-baseline gap-1 mb-8">
-<span class="text-5xl font-black text-white tracking-tight">790</span>
-<span class="text-slate-400 font-bold uppercase">DHS</span>
-</div>
-<p class="text-slate-400 mb-8 text-sm">Parfait pour lancer votre première plateforme.</p>
-<div class="space-y-4 mb-10 flex-grow">
-<div class="flex items-center gap-3 text-slate-300">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">Design Responsive</span>
-</div>
-<div class="flex items-center gap-3 text-slate-300">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">1 Landing Page</span>
-</div>
-<div class="flex items-center gap-3 text-slate-400 opacity-50">
-<span class="material-symbols-outlined text-lg">close</span>
-<span class="text-sm">SEO Avancé</span>
-</div>
-</div>
-<button class="w-full py-4 glass rounded-xl text-white font-bold hover:bg-white/5 transition-all">S'abonner</button>
-</div>
-<!-- Pro (Featured) -->
-<div class="glass-primary p-10 rounded-3xl flex flex-col border-primary/50 relative transform scale-105 z-10">
-<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-4 py-1 rounded-full">Plus Populaire</div>
-<h4 class="text-xl font-bold text-white mb-2">Business</h4>
-<div class="flex items-baseline gap-1 mb-8">
-<span class="text-5xl font-black text-white tracking-tight">2990</span>
-<span class="text-slate-400 font-bold uppercase">DHS<span class="text-sm font-normal">/mo</span></span>
-</div>
-<p class="text-slate-300 mb-8 text-sm">Pour les entreprises en pleine expansion.</p>
-<div class="space-y-4 mb-10 flex-grow">
-<div class="flex items-center gap-3 text-slate-100 font-medium">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">Sites Multipages</span>
-</div>
-<div class="flex items-center gap-3 text-slate-100 font-medium">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">SEO &amp; SEA Inclus</span>
-</div>
-<div class="flex items-center gap-3 text-slate-100 font-medium">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">Dashboard Analytique</span>
-</div>
-</div>
-<button class="w-full py-4 bg-primary rounded-xl text-white font-bold glow-button hover:bg-primary/90 transition-all">Démarrer maintenant</button>
-</div>
-<!-- Enterprise -->
-<div class="glass p-10 rounded-3xl flex flex-col hover:border-white/20 transition-all">
-<h4 class="text-xl font-bold text-white mb-2">Elite</h4>
-<div class="flex items-baseline gap-1 mb-8">
-<span class="text-5xl font-black text-white tracking-tight">9990</span>
-<span class="text-slate-400 font-bold uppercase">DHS<span class="text-sm font-normal">/mo</span></span>
-</div>
-<p class="text-slate-400 mb-8 text-sm">Solutions sur mesure pour grands groupes.</p>
-<div class="space-y-4 mb-10 flex-grow">
-<div class="flex items-center gap-3 text-slate-300">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">Infrastructure Cloud Dédiée</span>
-</div>
-<div class="flex items-center gap-3 text-slate-300">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">IA Custom Integration</span>
-</div>
-<div class="flex items-center gap-3 text-slate-300">
-<span class="material-symbols-outlined text-primary text-lg">done</span>
-<span class="text-sm">Support Dédié VIP</span>
-</div>
-</div>
-<button class="w-full py-4 glass rounded-xl text-white font-bold hover:bg-white/5 transition-all">Contacter les ventes</button>
-</div>
-</div>
-</div>
-</section>
-<!-- Testimonial Section -->
-<section class="py-24 px-6 relative" id="testimonials">
-<div class="max-w-7xl mx-auto overflow-hidden">
-<h2 class="text-3xl font-black text-white mb-12 flex items-center gap-4">
-                    Ce que disent nos partenaires
-                    <div class="h-[2px] flex-grow bg-white/10"></div>
-</h2>
-<div class="flex gap-6 overflow-x-auto pb-8 snap-x no-scrollbar">
-<div class="min-w-[350px] md:min-w-[450px] glass p-10 rounded-3xl snap-center border-l-4 border-l-primary">
-<div class="flex gap-1 mb-6 text-yellow-500">
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-</div>
-<p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
-                            "L'approche de BoostMark a radicalement changé notre présence digitale à Casablanca. En 3 mois, nos prospects ont doublé grâce à leur interface ultra-intuitive."
-                        </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">YM</div>
-<div>
-<h5 class="text-white font-bold">Yassine M.</h5>
-<p class="text-slate-500 text-sm">Directeur Marketing, TechHub Morocco</p>
-</div>
-</div>
-</div>
-<div class="min-w-[350px] md:min-w-[450px] glass p-10 rounded-3xl snap-center border-l-4 border-l-primary">
-<div class="flex gap-1 mb-6 text-yellow-500">
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-</div>
-<p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
-                            "Le pack Premium est un investissement rentable dès le premier mois. L'équipe est réactive et les designs sont au niveau des standards de la Silicon Valley."
-                        </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">SE</div>
-<div>
-<h5 class="text-white font-bold">Sara El.</h5>
-<p class="text-slate-500 text-sm">CEO, Innova Agency</p>
-</div>
-</div>
-</div>
-<div class="min-w-[350px] md:min-w-[450px] glass p-10 rounded-3xl snap-center border-l-4 border-l-primary">
-<div class="flex gap-1 mb-6 text-yellow-500">
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-<span class="material-symbols-outlined fill-1">star</span>
-</div>
-<p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
-                            "Travailler avec BoostMark, c'est choisir la sérénité. Leur respect des délais (7 jours !) est impressionnant pour le marché marocain."
-                        </p>
-<div class="flex items-center gap-4">
-<div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary">KB</div>
-<div>
-<h5 class="text-white font-bold">Karim B.</h5>
-<p class="text-slate-500 text-sm">Founder, Marrakesh E-commerce</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<!-- Footer -->
-<footer class="bg-[#010607] border-t border-white/5 py-12 px-6">
-<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-<div class="flex items-center gap-3">
-<img alt="BoostMark Logo" class="h-8 w-auto object-contain" src="{{DATA:IMAGE:IMAGE_2}}"/>
-</div>
-<div class="flex gap-8 text-sm text-slate-500">
-<a class="hover:text-white transition-colors" href="#">Confidentialité</a>
-<a class="hover:text-white transition-colors" href="#">Conditions</a>
-<a class="hover:text-white transition-colors" href="#">Support</a>
-</div>
-<div class="flex gap-4">
-<a class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined text-sm">language</span>
-</a>
-<a class="w-10 h-10 rounded-full glass flex items-center justify-center text-slate-400 hover:text-white transition-all" href="#">
-<span class="material-symbols-outlined text-sm">send</span>
-</a>
-</div>
-</div>
-<div class="max-w-7xl mx-auto mt-8 pt-8 border-t border-white/5 text-center text-slate-600 text-xs">
-                © 2024 BoostMark Agency. Conçu avec passion à Casablanca. Tous droits réservés.
+
+<!-- ============ HERO ============ -->
+<section class="relative min-h-screen flex items-center pt-24 pb-24 px-6 overflow-hidden">
+  <!-- Video Background -->
+  <div class="video-bg">
+    <video autoplay loop muted playsinline>
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-technology-network-loops-2751-large.mp4" type="video/mp4"/>
+    </video>
+    <div class="video-overlay"></div>
+  </div>
+
+  <!-- Particles -->
+  <div id="particles-container" class="absolute inset-0 z-0 pointer-events-none overflow-hidden"></div>
+
+  <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10 w-full">
+    <div>
+      <div class="reveal inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-primary text-xs font-bold uppercase tracking-widest mb-7">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+        </span>
+        Propulsé par l'IA &amp; le Design
+      </div>
+      <h1 class="reveal delay-1 text-6xl md:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6">
+        Boost<span class="text-gradient">Mark</span>
+      </h1>
+      <p class="reveal delay-2 text-xl text-slate-400 font-medium leading-relaxed max-w-xl mb-10">
+        Boostez votre conversion avec une expertise professionnelle et un design ultra-moderne conçu pour les leaders du marché.
+      </p>
+      <div class="reveal delay-3 flex flex-col sm:flex-row gap-4">
+        <a href="#contact" class="px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg glow-btn transition-all text-center">
+          Lancer mon projet →
+        </a>
+        <button onclick="openVideoModal()" class="px-8 py-4 glass text-white font-bold rounded-xl text-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2 group">
+          <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform" style="font-size:22px">play_circle</span>
+          Voir la démo
+        </button>
+      </div>
+      <!-- Trust badges -->
+      <div class="reveal delay-4 flex items-center gap-6 mt-10">
+        <div class="flex -space-x-2">
+          <div class="w-8 h-8 rounded-full bg-primary/30 border-2 border-background-dark flex items-center justify-center text-xs font-bold text-primary">YM</div>
+          <div class="w-8 h-8 rounded-full bg-blue-500/30 border-2 border-background-dark flex items-center justify-center text-xs font-bold text-blue-400">SE</div>
+          <div class="w-8 h-8 rounded-full bg-purple-500/30 border-2 border-background-dark flex items-center justify-center text-xs font-bold text-purple-400">KB</div>
+          <div class="w-8 h-8 rounded-full bg-orange-500/30 border-2 border-background-dark flex items-center justify-center text-xs font-bold text-orange-400">+9</div>
+        </div>
+        <p class="text-slate-400 text-sm"><span class="text-white font-bold">100+</span> clients satisfaits ce mois</p>
+      </div>
+    </div>
+
+    <div class="reveal delay-2 relative">
+      <div class="relative rounded-2xl overflow-hidden glass p-2">
+        <img class="w-full h-[460px] object-cover rounded-xl"
+             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjqF9tfMi8nd7GWkW0dbq2p0sZGywaqfrNjfQzlDLObLs8mqgn85N5U25bHNB6qJtHnVylJS3sUrH_MJ2RSExUK-3xBd457s7KAaVRasU-Kz15TXkJAx3ijJuIrBDXLLWBEZQ7PAGmzQDvqAvk8aZMgp2-hs5aBwSuLb_KRMgHXBUpd6sGn8Si7uwqirj4x7ACVax72rXJhqruSp9Vme78ZmvybQX78xAA63ylDDDrZkfT_kbNFxRMmipPynE6dBsQZbUM9_pZk2s"
+             alt="Analytics Dashboard"/>
+        <div class="absolute bottom-6 left-6 right-6 glass-primary p-5 rounded-xl">
+          <div class="flex items-center gap-4">
+            <div class="bg-primary/20 p-2.5 rounded-lg">
+              <span class="material-symbols-outlined text-primary" style="font-size:20px">trending_up</span>
             </div>
+            <div>
+              <p class="text-white font-bold text-lg">+324% Croissance</p>
+              <p class="text-slate-400 text-sm">Moyenne observée chez nos clients</p>
+            </div>
+            <div class="ml-auto">
+              <div class="w-16 h-8 relative">
+                <!-- Mini sparkline SVG -->
+                <svg viewBox="0 0 64 32" class="w-full h-full">
+                  <polyline points="0,28 10,22 22,18 32,12 44,8 54,4 64,2" fill="none" stroke="#a3e635" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <polyline points="0,28 10,22 22,18 32,12 44,8 54,4 64,2 64,32 0,32" fill="rgba(163,230,53,0.1)"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Floating badge -->
+      <div class="absolute -top-4 -right-4 glass-primary px-4 py-2 rounded-xl text-center animate-bounce">
+        <p class="text-primary font-black text-2xl">95%</p>
+        <p class="text-slate-300 text-xs">Rétention</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section class="py-20 px-6" id="stats">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="reveal glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all cursor-default service-card">
+        <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Talents</p>
+        <h3 class="text-5xl font-black text-white mb-2">
+          <span class="counter-value" data-target="100" data-suffix="+">0</span>
+        </h3>
+        <p class="text-slate-400 text-sm">Experts Freelances</p>
+        <div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all duration-500"></div>
+      </div>
+      <div class="reveal delay-1 glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all cursor-default service-card">
+        <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Volume</p>
+        <h3 class="text-5xl font-black text-white mb-2">
+          <span class="counter-value" data-target="2" data-suffix="M DHS">0</span>
+        </h3>
+        <p class="text-slate-400 text-sm">Chiffre d'Affaires</p>
+        <div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all duration-500"></div>
+      </div>
+      <div class="reveal delay-2 glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all cursor-default service-card">
+        <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Confiance</p>
+        <h3 class="text-5xl font-black text-white mb-2">
+          <span class="counter-value" data-target="95" data-suffix="%">0</span>
+        </h3>
+        <p class="text-slate-400 text-sm">Taux de Rétention</p>
+        <div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all duration-500"></div>
+      </div>
+      <div class="reveal delay-3 glass p-8 rounded-2xl text-center group hover:border-primary/50 transition-all cursor-default service-card">
+        <p class="text-primary text-xs font-bold uppercase tracking-widest mb-2">Vitesse</p>
+        <h3 class="text-5xl font-black text-white mb-2">
+          <span class="counter-value" data-target="7" data-suffix=" jours">0</span>
+        </h3>
+        <p class="text-slate-400 text-sm">Délai Moyen</p>
+        <div class="mt-4 h-1 w-12 bg-primary mx-auto rounded-full group-hover:w-24 transition-all duration-500"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVICES ============ -->
+<section class="py-24 px-6 bg-white/[0.015]" id="services">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-16 text-center">
+      <span class="text-primary text-xs font-bold uppercase tracking-widest">Ce que nous offrons</span>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4">Nos Services</h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Des solutions sur mesure pour transformer votre vision en résultats tangibles.</p>
+    </div>
+    <div class="grid md:grid-cols-2 gap-8">
+      <!-- Essentiel -->
+      <div class="reveal service-card group relative overflow-hidden rounded-3xl glass">
+        <div class="h-64 overflow-hidden relative">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-3YddBb9FFdgughXh1xWPzulf7KD_8H9vyVU0klMnZgpXJydlnFltgP4QjOOPaKg3Rcysb7t6HAWQa5viRet_9IR3uLweOg2Rp7FGBqGtgPsYEZiNOE2oPSpLNkPB_jFyQVQvikt_wANqPJ9N4K0oZjEQefa7f-AW1sO8T07_XGMwWvPcSN6ep_USMOvxnXPrO0kb3Hir_GKOeF3Cb2Mp6evNdReR8mj8yBs_VRB-kfLp3BSeuMRKlLgVp9Lw7DNrmaEbpekZJuw"
+               alt="Digital Marketing"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0712] to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold text-white uppercase tracking-tight">ESSENTIEL</h3>
+            <span class="bg-primary/20 text-primary px-4 py-1 rounded-full text-sm font-bold">790 DHS</span>
+          </div>
+          <p class="text-slate-400 mb-6 leading-relaxed">Pack de démarrage rapide pour visibilité immédiate. Idéal pour les nouveaux projets cherchant un impact visuel fort.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">check_circle</span>Design UI/UX Fondamental
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">check_circle</span>Landing Page Optimisée
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">check_circle</span>Audit SEO Technique
+            </li>
+          </ul>
+          <button onclick="selectPlan('Essentiel', '790 DHS')" class="w-full py-3 border border-white/15 rounded-xl font-bold text-white hover:bg-primary hover:border-primary hover:shadow-lg hover:shadow-primary/20 transition-all duration-300">
+            Choisir l'Essentiel
+          </button>
+        </div>
+      </div>
+
+      <!-- Premium -->
+      <div class="reveal delay-2 service-card group relative overflow-hidden rounded-3xl glass-primary">
+        <div class="absolute top-4 right-4 z-10 bg-primary text-white text-xs font-black uppercase tracking-wider px-3 py-1 rounded-full">
+          ⭐ Populaire
+        </div>
+        <div class="h-64 overflow-hidden relative">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0BTGaAgVZcCtG10hJjq4ZJ8LJ31V6FoWFzngl3unui6de1mgJ_SeKUup7zEY4bgS1K9r-5IC3u0QcUKwwsSzjHwns3DesPo7Cf2e8TighjJ5BumheHi8eZAzagR0r8CTavsbalMp7RDBvXqxTbJXLJ80e-FlvLNP4-2LOFw7n7tmQd0-_HOddMn9nUFr7Qa5wTVV-IZBeAcbBy8BbJW02AEL-McIuntPY60pd0NJLtDVLCVZWSNk8vDAquAp4u_TOCtk4kpSz1uI"
+               alt="Business Growth"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-[#0a0712] to-transparent"></div>
+        </div>
+        <div class="p-8">
+          <div class="flex justify-between items-start mb-4">
+            <h3 class="text-2xl font-bold text-white uppercase tracking-tight">PREMIUM</h3>
+            <span class="bg-primary text-white px-4 py-1 rounded-full text-sm font-bold">2990 DHS/mois</span>
+          </div>
+          <p class="text-slate-400 mb-6 leading-relaxed">Gestion continue et croissance accélérée. Une suite complète pour dominer votre marché durablement.</p>
+          <ul class="space-y-3 mb-8">
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">check_circle</span>Accompagnement Stratégique
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">check_circle</span>A/B Testing &amp; Optimisation de Conversion
+            </li>
+            <li class="flex items-center gap-3 text-sm text-slate-300">
+              <span class="material-symbols-outlined text-primary" style="font-size:18px">check_circle</span>Support Prioritaire 24/7
+            </li>
+          </ul>
+          <button onclick="selectPlan('Premium', '2990 DHS/mois')" class="w-full py-3 bg-primary rounded-xl font-bold text-white glow-btn transition-all duration-300 hover:scale-[1.02]">
+            Choisir le Premium
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section class="py-24 px-6" id="pricing">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal mb-4 text-center">
+      <span class="text-primary text-xs font-bold uppercase tracking-widest">Tarification</span>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4">Tarification Transparente</h2>
+      <p class="text-slate-400 text-lg">Choisissez le plan qui correspond à vos ambitions.</p>
+    </div>
+    <!-- Annual toggle -->
+    <div class="reveal flex items-center justify-center gap-4 mb-14">
+      <span class="text-slate-400 text-sm font-medium">Mensuel</span>
+      <div class="toggle-pill" id="billing-toggle" onclick="toggleBilling()">
+        <div class="toggle-dot"></div>
+      </div>
+      <span class="text-slate-400 text-sm font-medium">Annuel <span class="bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full font-bold ml-1">-20%</span></span>
+    </div>
+
+    <div class="grid lg:grid-cols-3 gap-8 items-start">
+      <!-- Starter -->
+      <div class="reveal glass p-10 rounded-3xl flex flex-col hover:border-white/20 transition-all service-card">
+        <h4 class="text-xl font-bold text-white mb-2">Starter</h4>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="text-5xl font-black text-white tracking-tight price-value" data-monthly="790" data-annual="632">790</span>
+          <span class="text-slate-400 font-bold uppercase text-sm">DHS<span class="price-period text-xs font-normal"></span></span>
+        </div>
+        <p class="text-slate-500 text-xs mb-6 price-note"></p>
+        <p class="text-slate-400 mb-8 text-sm">Parfait pour lancer votre première plateforme.</p>
+        <div class="space-y-4 mb-10 flex-grow">
+          <div class="flex items-center gap-3 text-slate-300"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">Design Responsive</span></div>
+          <div class="flex items-center gap-3 text-slate-300"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">1 Landing Page</span></div>
+          <div class="flex items-center gap-3 text-slate-400 opacity-50"><span class="material-symbols-outlined" style="font-size:18px">close</span><span class="text-sm">SEO Avancé</span></div>
+          <div class="flex items-center gap-3 text-slate-400 opacity-50"><span class="material-symbols-outlined" style="font-size:18px">close</span><span class="text-sm">Dashboard Analytique</span></div>
+        </div>
+        <button onclick="selectPlan('Starter', this.closest('.reveal').querySelector('.price-value').textContent + ' DHS')" class="w-full py-4 glass rounded-xl text-white font-bold hover:bg-white/5 hover:border-primary/30 transition-all">
+          S'abonner
+        </button>
+      </div>
+
+      <!-- Business (Featured) -->
+      <div class="reveal delay-1 pricing-featured p-10 rounded-3xl flex flex-col relative service-card" style="transform:scale(1.04)">
+        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-white text-[10px] font-black uppercase tracking-widest px-5 py-1.5 rounded-full whitespace-nowrap">
+          ⭐ Plus Populaire
+        </div>
+        <h4 class="text-xl font-bold text-white mb-2">Business</h4>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="text-5xl font-black text-white tracking-tight price-value" data-monthly="2990" data-annual="2392">2990</span>
+          <span class="text-slate-400 font-bold uppercase text-sm">DHS<span class="price-period text-xs font-normal">/mo</span></span>
+        </div>
+        <p class="text-slate-500 text-xs mb-6 price-note"></p>
+        <p class="text-slate-300 mb-8 text-sm">Pour les entreprises en pleine expansion.</p>
+        <div class="space-y-4 mb-10 flex-grow">
+          <div class="flex items-center gap-3 text-slate-100 font-medium"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">Sites Multipages</span></div>
+          <div class="flex items-center gap-3 text-slate-100 font-medium"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">SEO &amp; SEA Inclus</span></div>
+          <div class="flex items-center gap-3 text-slate-100 font-medium"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">Dashboard Analytique</span></div>
+          <div class="flex items-center gap-3 text-slate-100 font-medium"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">Support Prioritaire 24/7</span></div>
+        </div>
+        <button onclick="selectPlan('Business', this.closest('.reveal').querySelector('.price-value').textContent + ' DHS/mois')" class="w-full py-4 bg-primary rounded-xl text-white font-bold glow-btn transition-all hover:scale-[1.02]">
+          Démarrer maintenant
+        </button>
+      </div>
+
+      <!-- Elite -->
+      <div class="reveal delay-2 glass p-10 rounded-3xl flex flex-col hover:border-white/20 transition-all service-card">
+        <h4 class="text-xl font-bold text-white mb-2">Elite</h4>
+        <div class="flex items-baseline gap-1 mb-2">
+          <span class="text-5xl font-black text-white tracking-tight price-value" data-monthly="9990" data-annual="7992">9990</span>
+          <span class="text-slate-400 font-bold uppercase text-sm">DHS<span class="price-period text-xs font-normal">/mo</span></span>
+        </div>
+        <p class="text-slate-500 text-xs mb-6 price-note"></p>
+        <p class="text-slate-400 mb-8 text-sm">Solutions sur mesure pour grands groupes.</p>
+        <div class="space-y-4 mb-10 flex-grow">
+          <div class="flex items-center gap-3 text-slate-300"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">Infrastructure Cloud Dédiée</span></div>
+          <div class="flex items-center gap-3 text-slate-300"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">IA Custom Integration</span></div>
+          <div class="flex items-center gap-3 text-slate-300"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">Support Dédié VIP</span></div>
+          <div class="flex items-center gap-3 text-slate-300"><span class="material-symbols-outlined text-primary" style="font-size:18px">done</span><span class="text-sm">SLA Garanti 99.9%</span></div>
+        </div>
+        <button onclick="selectPlan('Elite', 'sur devis')" class="w-full py-4 glass rounded-xl text-white font-bold hover:bg-white/5 hover:border-primary/30 transition-all">
+          Contacter les ventes
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="py-24 px-6 relative overflow-hidden" id="testimonials">
+  <div class="max-w-7xl mx-auto">
+    <div class="reveal flex items-center gap-4 mb-12">
+      <h2 class="text-3xl font-black text-white whitespace-nowrap">Ce que disent nos partenaires</h2>
+      <div class="h-px flex-grow bg-white/10"></div>
+      <!-- Slider controls -->
+      <div class="flex gap-2">
+        <button onclick="slideTestimonials(-1)" class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary hover:border-primary/30 transition-all" aria-label="Précédent">
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_back</span>
+        </button>
+        <button onclick="slideTestimonials(1)" class="w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary hover:border-primary/30 transition-all" aria-label="Suivant">
+          <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="overflow-hidden" id="testimonials-wrapper">
+      <div class="testimonials-track" id="testimonials-track">
+        <!-- T1 -->
+        <div class="testimonial-card glass p-10 rounded-3xl border-l-4 border-l-primary">
+          <div class="flex gap-1 mb-6 text-yellow-400">⭐⭐⭐⭐⭐</div>
+          <p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
+            "L'approche de BoostMark a radicalement changé notre présence digitale à Casablanca. En 3 mois, nos prospects ont doublé grâce à leur interface ultra-intuitive."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-primary/20 flex items-center justify-center font-bold text-primary shrink-0">YM</div>
+            <div>
+              <h5 class="text-white font-bold">Yassine M.</h5>
+              <p class="text-slate-500 text-sm">Directeur Marketing, TechHub Morocco</p>
+            </div>
+          </div>
+        </div>
+        <!-- T2 -->
+        <div class="testimonial-card glass p-10 rounded-3xl border-l-4 border-l-primary">
+          <div class="flex gap-1 mb-6 text-yellow-400">⭐⭐⭐⭐⭐</div>
+          <p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
+            "Le pack Premium est un investissement rentable dès le premier mois. L'équipe est réactive et les designs sont au niveau des standards de la Silicon Valley."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center font-bold text-blue-400 shrink-0">SE</div>
+            <div>
+              <h5 class="text-white font-bold">Sara El.</h5>
+              <p class="text-slate-500 text-sm">CEO, Innova Agency</p>
+            </div>
+          </div>
+        </div>
+        <!-- T3 -->
+        <div class="testimonial-card glass p-10 rounded-3xl border-l-4 border-l-primary">
+          <div class="flex gap-1 mb-6 text-yellow-400">⭐⭐⭐⭐⭐</div>
+          <p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
+            "Travailler avec BoostMark, c'est choisir la sérénité. Leur respect des délais (7 jours !) est impressionnant pour le marché marocain."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center font-bold text-purple-400 shrink-0">KB</div>
+            <div>
+              <h5 class="text-white font-bold">Karim B.</h5>
+              <p class="text-slate-500 text-sm">Founder, Marrakesh E-commerce</p>
+            </div>
+          </div>
+        </div>
+        <!-- T4 -->
+        <div class="testimonial-card glass p-10 rounded-3xl border-l-4 border-l-primary">
+          <div class="flex gap-1 mb-6 text-yellow-400">⭐⭐⭐⭐⭐</div>
+          <p class="text-xl text-slate-200 font-medium italic mb-8 leading-relaxed">
+            "Notre taux de conversion a augmenté de 180% en seulement 6 semaines. L'équipe BoostMark comprend vraiment les défis du marché marocain."
+          </p>
+          <div class="flex items-center gap-4">
+            <div class="w-12 h-12 rounded-full bg-orange-500/20 flex items-center justify-center font-bold text-orange-400 shrink-0">AM</div>
+            <div>
+              <h5 class="text-white font-bold">Amine M.</h5>
+              <p class="text-slate-500 text-sm">Fondateur, Digital Souk</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Dots -->
+    <div class="flex justify-center gap-2 mt-8" id="testimonial-dots"></div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="py-24 px-6 bg-white/[0.015]" id="faq">
+  <div class="max-w-3xl mx-auto">
+    <div class="reveal text-center mb-14">
+      <span class="text-primary text-xs font-bold uppercase tracking-widest">Questions fréquentes</span>
+      <h2 class="text-4xl font-black text-white mt-3">FAQ</h2>
+    </div>
+    <div class="space-y-4">
+      <div class="reveal faq-item glass rounded-2xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="font-semibold text-white">Quel est le délai moyen pour livrer un projet ?</span>
+          <span class="material-symbols-outlined text-primary faq-icon shrink-0" style="font-size:20px">add</span>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-slate-400 leading-relaxed">Notre délai moyen est de 7 jours ouvrables pour les projets standard. Pour les projets Elite, nous établissons un planning personnalisé selon vos besoins spécifiques.</p>
+        </div>
+      </div>
+      <div class="reveal delay-1 faq-item glass rounded-2xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="font-semibold text-white">Puis-je changer de plan à tout moment ?</span>
+          <span class="material-symbols-outlined text-primary faq-icon shrink-0" style="font-size:20px">add</span>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-slate-400 leading-relaxed">Absolument ! Vous pouvez upgrader ou downgrader votre plan à tout moment. Le changement prendra effet au début du prochain cycle de facturation.</p>
+        </div>
+      </div>
+      <div class="reveal delay-2 faq-item glass rounded-2xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="font-semibold text-white">Y a-t-il une période d'essai gratuite ?</span>
+          <span class="material-symbols-outlined text-primary faq-icon shrink-0" style="font-size:20px">add</span>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-slate-400 leading-relaxed">Nous offrons une consultation gratuite de 30 minutes pour discuter de votre projet. Contactez-nous via WhatsApp ou le formulaire ci-dessous pour en profiter.</p>
+        </div>
+      </div>
+      <div class="reveal delay-3 faq-item glass rounded-2xl overflow-hidden">
+        <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleFAQ(this)">
+          <span class="font-semibold text-white">Quels modes de paiement acceptez-vous ?</span>
+          <span class="material-symbols-outlined text-primary faq-icon shrink-0" style="font-size:20px">add</span>
+        </button>
+        <div class="faq-answer px-6 pb-6">
+          <p class="text-slate-400 leading-relaxed">Nous acceptons les virements bancaires, les cartes de crédit, et le paiement via PayPal. Pour les plans annuels, nous offrons des facilités de paiement en plusieurs tranches.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="py-24 px-6" id="contact">
+  <div class="max-w-2xl mx-auto">
+    <div class="reveal text-center mb-12">
+      <span class="text-primary text-xs font-bold uppercase tracking-widest">Passez à l'action</span>
+      <h2 class="text-4xl font-black text-white mt-3 mb-4">Lancez votre projet</h2>
+      <p class="text-slate-400">Remplissez le formulaire et nous vous recontactons sous 24h.</p>
+    </div>
+
+    <div class="reveal glass p-10 rounded-3xl">
+      <!-- Success message -->
+      <div id="form-success" class="form-success text-center py-8">
+        <div class="w-16 h-16 bg-primary/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="material-symbols-outlined text-primary" style="font-size:32px">check_circle</span>
+        </div>
+        <h3 class="text-white font-bold text-xl mb-2">Message envoyé !</h3>
+        <p class="text-slate-400">Nous vous recontactons dans les 24h. Merci !</p>
+        <button onclick="resetForm()" class="mt-6 px-6 py-2 glass rounded-xl text-white font-medium hover:bg-white/5 transition-all">Envoyer un autre message</button>
+      </div>
+
+      <!-- Form -->
+      <div id="contact-form">
+        <!-- Plan indicator -->
+        <div id="selected-plan-info" class="hidden mb-6 flex items-center gap-3 glass-primary rounded-xl px-4 py-3">
+          <span class="material-symbols-outlined text-primary" style="font-size:18px">package</span>
+          <span class="text-sm text-slate-300">Plan sélectionné: <strong id="selected-plan-name" class="text-primary"></strong></span>
+          <button onclick="clearPlan()" class="ml-auto text-slate-500 hover:text-white transition-colors">
+            <span class="material-symbols-outlined" style="font-size:16px">close</span>
+          </button>
+        </div>
+
+        <div class="space-y-5">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Prénom *</label>
+              <input id="f-prenom" type="text" placeholder="Votre prénom"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 focus:bg-white/8 transition-all"/>
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Nom *</label>
+              <input id="f-nom" type="text" placeholder="Votre nom"
+                class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 focus:bg-white/8 transition-all"/>
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email *</label>
+            <input id="f-email" type="email" placeholder="votre@email.com"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 transition-all"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Téléphone</label>
+            <input id="f-tel" type="tel" placeholder="+212 6XX XXX XXX"
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 transition-all"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Votre projet *</label>
+            <textarea id="f-message" rows="4" placeholder="Décrivez votre projet en quelques lignes..."
+              class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-primary/50 transition-all resize-none"></textarea>
+          </div>
+          <div id="form-error" class="hidden text-red-400 text-sm flex items-center gap-2">
+            <span class="material-symbols-outlined" style="font-size:16px">error</span>
+            <span id="form-error-msg">Veuillez remplir tous les champs obligatoires.</span>
+          </div>
+          <button onclick="submitForm()" id="submit-btn" class="w-full py-4 bg-primary text-white font-bold rounded-xl glow-btn transition-all hover:scale-[1.02] flex items-center justify-center gap-2">
+            <span id="submit-text">Envoyer ma demande →</span>
+            <span id="submit-loader" class="hidden loader-ring" style="width:20px;height:20px;border-width:2px"></span>
+          </button>
+          <p class="text-center text-slate-500 text-xs">
+            Ou contactez-nous directement sur
+            <a href="https://wa.me/212720909638" class="text-primary hover:underline" target="_blank">WhatsApp</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="bg-[#010607] border-t border-white/5 py-16 px-6">
+  <div class="max-w-7xl mx-auto">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+            <span class="material-symbols-outlined text-white" style="font-size:18px">bolt</span>
+          </div>
+          <span class="text-white font-black text-xl">Boost<span class="text-primary">Mark</span></span>
+        </div>
+        <p class="text-slate-500 text-sm leading-relaxed max-w-sm">
+          L'agence SaaS de référence au Maroc pour la conversion digitale. Nous transformons votre vision en résultats mesurables.
+        </p>
+        <div class="flex gap-3 mt-6">
+          <a href="https://wa.me/212720909638" class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all">
+            <span class="material-symbols-outlined" style="font-size:16px">chat</span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all">
+            <span class="material-symbols-outlined" style="font-size:16px">language</span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full glass flex items-center justify-center text-slate-400 hover:text-primary hover:border-primary/30 transition-all">
+            <span class="material-symbols-outlined" style="font-size:16px">send</span>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h5 class="text-white font-bold text-sm mb-4">Services</h5>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a href="#services" class="hover:text-primary transition-colors">Design UI/UX</a></li>
+          <li><a href="#services" class="hover:text-primary transition-colors">Landing Pages</a></li>
+          <li><a href="#services" class="hover:text-primary transition-colors">SEO &amp; SEA</a></li>
+          <li><a href="#services" class="hover:text-primary transition-colors">A/B Testing</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="text-white font-bold text-sm mb-4">Liens</h5>
+        <ul class="space-y-2 text-sm text-slate-500">
+          <li><a href="#pricing" class="hover:text-primary transition-colors">Tarifs</a></li>
+          <li><a href="#testimonials" class="hover:text-primary transition-colors">Témoignages</a></li>
+          <li><a href="#faq" class="hover:text-primary transition-colors">FAQ</a></li>
+          <li><a href="#contact" class="hover:text-primary transition-colors">Contact</a></li>
+          <li><a href="#" class="hover:text-primary transition-colors">Confidentialité</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <p class="text-slate-600 text-xs">© 2025 BoostMark Agency. Conçu avec passion à Casablanca.</p>
+      <p class="text-slate-600 text-xs">Tous droits réservés.</p>
+    </div>
+  </div>
 </footer>
+
+<!-- ============ VIDEO MODAL ============ -->
+<div id="video-modal" class="fixed inset-0 z-[999] flex items-center justify-center p-4 hidden" style="background:rgba(0,0,0,0.8);backdrop-filter:blur(8px)">
+  <div class="relative w-full max-w-4xl glass rounded-3xl overflow-hidden">
+    <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 glass rounded-full flex items-center justify-center text-white hover:text-primary transition-colors">
+      <span class="material-symbols-outlined" style="font-size:20px">close</span>
+    </button>
+    <div class="aspect-video bg-black/50 flex items-center justify-center">
+      <div class="text-center">
+        <div class="w-20 h-20 rounded-full glass-primary flex items-center justify-center mx-auto mb-4">
+          <span class="material-symbols-outlined text-primary" style="font-size:40px">play_circle</span>
+        </div>
+        <p class="text-slate-400 text-sm">Démo vidéo disponible bientôt</p>
+        <p class="text-slate-500 text-xs mt-2">Contactez-nous pour une démo live personnalisée</p>
+        <a href="https://wa.me/212720909638" target="_blank" class="mt-6 inline-flex items-center gap-2 bg-green-500 text-white px-6 py-3 rounded-full font-bold text-sm hover:bg-green-400 transition-colors">
+          <span class="material-symbols-outlined" style="font-size:18px">chat</span>Demander une démo
+        </a>
+      </div>
+    </div>
+  </div>
 </div>
-</body></html>
+
+<script>
+// ============================================================
+// PAGE LOADER
+// ============================================================
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    const loader = document.getElementById('page-loader');
+    loader.classList.add('hidden');
+    setTimeout(() => loader.remove(), 700);
+    initReveal();
+    initParticles();
+  }, 700);
+});
+
+// ============================================================
+// SCROLL PROGRESS BAR
+// ============================================================
+window.addEventListener('scroll', () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const pct = (scrollTop / docHeight) * 100;
+  document.getElementById('scroll-progress').style.width = pct + '%';
+  updateNavbar(scrollTop);
+});
+
+function updateNavbar(scrollTop) {
+  const nav = document.getElementById('navbar');
+  if (scrollTop > 50) {
+    nav.classList.add('glass', 'border-b', 'border-white/10');
+  } else {
+    nav.classList.remove('glass', 'border-b', 'border-white/10');
+  }
+}
+
+// ============================================================
+// CURSOR GLOW (desktop)
+// ============================================================
+const cursorGlow = document.getElementById('cursor-glow');
+if (window.innerWidth > 768) {
+  document.addEventListener('mousemove', (e) => {
+    cursorGlow.style.transform = `translate(${e.clientX - 160}px, ${e.clientY - 160}px)`;
+  });
+}
+
+// ============================================================
+// MOBILE MENU
+// ============================================================
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobile-menu');
+let menuOpen = false;
+
+hamburger.addEventListener('click', () => {
+  menuOpen = !menuOpen;
+  mobileMenu.classList.toggle('open', menuOpen);
+  // Animate hamburger to X
+  const h1 = document.getElementById('h1');
+  const h2 = document.getElementById('h2');
+  const h3 = document.getElementById('h3');
+  if (menuOpen) {
+    h1.style.transform = 'rotate(45deg) translate(3px, 3px)';
+    h2.style.opacity = '0';
+    h3.style.transform = 'rotate(-45deg) translate(3px, -3px)';
+  } else {
+    h1.style.transform = '';
+    h2.style.opacity = '';
+    h3.style.transform = '';
+  }
+});
+
+function closeMobileMenu() {
+  menuOpen = false;
+  mobileMenu.classList.remove('open');
+  document.getElementById('h1').style.transform = '';
+  document.getElementById('h2').style.opacity = '';
+  document.getElementById('h3').style.transform = '';
+}
+
+// ============================================================
+// SCROLL REVEAL
+// ============================================================
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Trigger counters if in stats section
+        if (e.target.closest('#stats')) triggerCounters();
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
+
+// ============================================================
+// ANIMATED COUNTERS
+// ============================================================
+let countersTriggered = false;
+function triggerCounters() {
+  if (countersTriggered) return;
+  countersTriggered = true;
+  document.querySelectorAll('.counter-value').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    const suffix = el.dataset.suffix || '';
+    let current = 0;
+    const step = target / 60;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        el.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        el.textContent = Math.floor(current) + suffix;
+      }
+    }, 16);
+  });
+}
+
+// ============================================================
+// PARTICLES
+// ============================================================
+function initParticles() {
+  const container = document.getElementById('particles-container');
+  for (let i = 0; i < 18; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + '%';
+    p.style.bottom = '-5px';
+    p.style.animationDuration = (8 + Math.random() * 12) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    p.style.width = p.style.height = (2 + Math.random() * 3) + 'px';
+    p.style.opacity = 0.3 + Math.random() * 0.4;
+    container.appendChild(p);
+  }
+}
+
+// ============================================================
+// BILLING TOGGLE (Monthly / Annual)
+// ============================================================
+let isAnnual = false;
+function toggleBilling() {
+  isAnnual = !isAnnual;
+  const toggle = document.getElementById('billing-toggle');
+  toggle.classList.toggle('active', isAnnual);
+
+  document.querySelectorAll('.price-value').forEach(el => {
+    const val = isAnnual ? parseInt(el.dataset.annual) : parseInt(el.dataset.monthly);
+    el.textContent = val;
+  });
+  document.querySelectorAll('.price-period').forEach(el => {
+    el.textContent = isAnnual ? '/mo' : '/mo';
+  });
+  document.querySelectorAll('.price-note').forEach(el => {
+    el.textContent = isAnnual ? '(Facturé annuellement — économisez 20%)' : '';
+  });
+
+  showToast(isAnnual ? '💰 Facturation annuelle — 20% d\'économie appliquée !' : 'Facturation mensuelle sélectionnée');
+}
+
+// ============================================================
+// TESTIMONIALS SLIDER
+// ============================================================
+let slideIndex = 0;
+const track = document.getElementById('testimonials-track');
+const wrapper = document.getElementById('testimonials-wrapper');
+const dotsContainer = document.getElementById('testimonial-dots');
+
+function getCardWidth() {
+  const card = track.querySelector('.testimonial-card');
+  return card ? card.offsetWidth + 24 : 444; // 24 = gap
+}
+
+function buildDots() {
+  const count = track.querySelectorAll('.testimonial-card').length;
+  dotsContainer.innerHTML = '';
+  for (let i = 0; i < count; i++) {
+    const d = document.createElement('button');
+    d.className = `w-2 h-2 rounded-full transition-all ${i === 0 ? 'bg-primary w-6' : 'bg-white/20'}`;
+    d.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(d);
+  }
+}
+
+function goToSlide(i) {
+  const count = track.querySelectorAll('.testimonial-card').length;
+  slideIndex = Math.max(0, Math.min(i, count - 1));
+  track.style.transform = `translateX(-${slideIndex * getCardWidth()}px)`;
+  buildDots();
+  dotsContainer.querySelectorAll('button').forEach((d, idx) => {
+    d.className = `rounded-full transition-all ${idx === slideIndex ? 'bg-primary w-6 h-2' : 'bg-white/20 w-2 h-2'}`;
+  });
+}
+
+function slideTestimonials(dir) {
+  const count = track.querySelectorAll('.testimonial-card').length;
+  slideIndex = (slideIndex + dir + count) % count;
+  goToSlide(slideIndex);
+}
+
+// Auto-slide
+setInterval(() => slideTestimonials(1), 5000);
+
+// Build dots after load
+window.addEventListener('load', () => { setTimeout(buildDots, 800); });
+
+// Touch/swipe support
+let touchStartX = 0;
+wrapper.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+wrapper.addEventListener('touchend', e => {
+  const diff = touchStartX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 50) slideTestimonials(diff > 0 ? 1 : -1);
+}, {passive:true});
+
+// ============================================================
+// FAQ ACCORDION
+// ============================================================
+function toggleFAQ(btn) {
+  const item = btn.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const isOpen = item.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq-item').forEach(i => {
+    i.classList.remove('open');
+    i.querySelector('.faq-answer').classList.remove('open');
+  });
+
+  if (!isOpen) {
+    item.classList.add('open');
+    answer.classList.add('open');
+  }
+}
+
+// ============================================================
+// PLAN SELECTION
+// ============================================================
+function selectPlan(name, price) {
+  const info = document.getElementById('selected-plan-info');
+  const planName = document.getElementById('selected-plan-name');
+  planName.textContent = `${name} — ${price}`;
+  info.classList.remove('hidden');
+  info.style.display = 'flex';
+
+  // Scroll to contact
+  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+  showToast(`✓ Plan ${name} sélectionné !`);
+}
+
+function clearPlan() {
+  const info = document.getElementById('selected-plan-info');
+  info.classList.add('hidden');
+  info.style.display = 'none';
+}
+
+// ============================================================
+// CONTACT FORM
+// ============================================================
+function submitForm() {
+  const prenom = document.getElementById('f-prenom').value.trim();
+  const nom = document.getElementById('f-nom').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const message = document.getElementById('f-message').value.trim();
+  const errorEl = document.getElementById('form-error');
+
+  // Validate
+  if (!prenom || !nom || !email || !message) {
+    errorEl.classList.remove('hidden');
+    document.getElementById('form-error-msg').textContent = 'Veuillez remplir tous les champs obligatoires.';
+    return;
+  }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    errorEl.classList.remove('hidden');
+    document.getElementById('form-error-msg').textContent = 'Veuillez entrer une adresse email valide.';
+    return;
+  }
+  errorEl.classList.add('hidden');
+
+  // Loading state
+  const btn = document.getElementById('submit-btn');
+  document.getElementById('submit-text').classList.add('hidden');
+  document.getElementById('submit-loader').classList.remove('hidden');
+  btn.disabled = true;
+
+  // Simulate async send
+  setTimeout(() => {
+    document.getElementById('contact-form').style.display = 'none';
+    document.getElementById('form-success').style.display = 'block';
+  }, 1800);
+}
+
+function resetForm() {
+  document.getElementById('contact-form').style.display = '';
+  document.getElementById('form-success').style.display = 'none';
+  document.getElementById('f-prenom').value = '';
+  document.getElementById('f-nom').value = '';
+  document.getElementById('f-email').value = '';
+  document.getElementById('f-tel').value = '';
+  document.getElementById('f-message').value = '';
+  document.getElementById('submit-text').classList.remove('hidden');
+  document.getElementById('submit-loader').classList.add('hidden');
+  document.getElementById('submit-btn').disabled = false;
+  clearPlan();
+}
+
+// ============================================================
+// VIDEO MODAL
+// ============================================================
+function openVideoModal() {
+  const modal = document.getElementById('video-modal');
+  modal.classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+function closeVideoModal() {
+  document.getElementById('video-modal').classList.add('hidden');
+  document.body.style.overflow = '';
+}
+document.getElementById('video-modal').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) closeVideoModal();
+});
+
+// ============================================================
+// TOAST NOTIFICATION
+// ============================================================
+let toastTimer;
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove('show'), 3200);
+}
+
+// ============================================================
+// SMOOTH ANCHOR SCROLLING (offset for fixed nav)
+// ============================================================
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    if (href === '#') return;
+    const target = document.querySelector(href);
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+});
+
+// ============================================================
+// KEYBOARD ACCESSIBILITY
+// ============================================================
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeVideoModal();
+    closeMobileMenu();
+  }
+});
+</script>
+</body>
+</html>
