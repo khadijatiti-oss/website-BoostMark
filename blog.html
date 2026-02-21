@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Blog & Actualités | BoostMark — Marketing Digital Maroc</title>
+<meta name="description" content="Conseils SEO, design UI/UX, stratégie digitale et tendances du marketing digital au Maroc. Le blog officiel de BoostMark, Casablanca."/>
+<meta property="og:title" content="Blog & Actualités | BoostMark"/>
+<meta property="og:description" content="Tendances, stratégies et insights du marketing digital au Maroc."/>
+<meta property="og:type" content="website"/>
+<meta property="og:image" content="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=1200&q=85&fit=crop"/>
+<link rel="canonical" href="https://khadijatiti-oss.github.io/website-BoostMark/blog.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link rel="preconnect" href="https://images.unsplash.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#a3e635'},fontFamily:{sans:['Inter','sans-serif']}}}}</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#020b0d;color:#f1f5f9;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:#020b0d}
+::-webkit-scrollbar-thumb{background:#a3e635;border-radius:2px}
+:root{
+  --p:#a3e635;--p-dim:rgba(163,230,53,.12);--p-b:rgba(163,230,53,.28);
+  --gb:rgba(255,255,255,.04);--gbd:rgba(255,255,255,.08);
+  --surf:#0b1416;--mut:#64748b;--body:#94a3b8
+}
+.glass{background:var(--gb);border:1px solid var(--gbd);backdrop-filter:blur(16px)}
+.glass-p{background:var(--p-dim);border:1px solid var(--p-b)}
+.page-bg{background:radial-gradient(ellipse 70% 40% at 85% 5%,rgba(6,44,48,.85) 0%,transparent 60%),radial-gradient(ellipse 50% 40% at 5% 95%,rgba(8,51,68,.6) 0%,transparent 60%),#020b0d}
+#sb{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,#a3e635,#65a30d);z-index:9999;transition:width .08s linear}
+#nav{position:fixed;top:0;width:100%;z-index:100;padding:1rem 1.5rem;transition:background .3s,border-color .3s}
+#nav.sc{background:rgba(2,11,13,.92);border-bottom:1px solid var(--gbd);backdrop-filter:blur(20px)}
+.nl{position:relative;font-size:.875rem;font-weight:500;color:var(--mut);transition:color .2s;text-decoration:none}
+.nl::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1.5px;background:var(--p);transition:width .25s}
+.nl:hover{color:var(--p)}.nl:hover::after,.nl.on{color:var(--p)}.nl.on::after{width:100%}
+.btn{background:var(--p);color:#fff;font-weight:700;border-radius:10px;padding:.6rem 1.25rem;font-size:.875rem;transition:box-shadow .25s,transform .2s;box-shadow:0 0 20px rgba(163,230,53,.35);display:inline-block;text-decoration:none}
+.btn:hover{box-shadow:0 0 32px rgba(163,230,53,.55);transform:translateY(-1px)}
+.wa{position:fixed;bottom:2rem;right:2rem;z-index:50;display:flex;align-items:center;gap:.5rem;background:#22c55e;color:#fff;font-weight:700;font-size:.875rem;padding:.75rem 1.25rem;border-radius:999px;text-decoration:none;box-shadow:0 8px 32px rgba(34,197,94,.4);animation:wap 2s infinite;transition:transform .2s}
+.wa:hover{transform:scale(1.06)}
+@keyframes wap{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5),0 8px 32px rgba(34,197,94,.3)}50%{box-shadow:0 0 0 10px rgba(34,197,94,0),0 8px 32px rgba(34,197,94,.3)}}
+#mob{overflow:hidden;max-height:0;opacity:0;transition:max-height .38s ease,opacity .28s ease}
+#mob.op{max-height:380px;opacity:1}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:var(--p-dim);border:1px solid var(--p-b);color:var(--p);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .9rem;border-radius:999px;margin-bottom:1.5rem}
+.ping{position:relative;width:7px;height:7px}
+.ping span{position:absolute;inset:0;border-radius:50%;background:var(--p)}
+.ping span:first-child{animation:pg 1.4s cubic-bezier(0,0,.2,1) infinite;opacity:.7}
+@keyframes pg{0%{transform:scale(1);opacity:.7}100%{transform:scale(2.2);opacity:0}}
+.tg{background:linear-gradient(135deg,#a3e635 0%,#65a30d 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.si{position:relative}
+.si .ic{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);color:var(--mut);font-size:18px;pointer-events:none}
+.si input{width:100%;padding:.7rem 1rem .7rem 2.6rem;background:var(--gb);border:1px solid var(--gbd);border-radius:10px;color:#f1f5f9;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .2s,background .2s}
+.si input::placeholder{color:var(--mut)}
+.si input:focus{border-color:var(--p-b);background:rgba(255,255,255,.06)}
+.pill{padding:.45rem 1.1rem;border-radius:999px;cursor:pointer;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;border:1px solid var(--gbd);background:var(--gb);color:var(--mut);transition:all .2s;font-family:inherit}
+.pill:hover{border-color:var(--p-b);color:var(--p)}
+.pill.on{background:var(--p-dim);border-color:var(--p-b);color:var(--p)}
+.tg-seo{background:rgba(96,165,250,.15);color:#60a5fa;border:1px solid rgba(96,165,250,.25)}
+.tg-design{background:rgba(167,139,250,.15);color:#a78bfa;border:1px solid rgba(167,139,250,.25)}
+.tg-strat{background:rgba(251,191,36,.15);color:#fbbf24;border:1px solid rgba(251,191,36,.25)}
+.tg-ia{background:var(--p-dim);color:var(--p);border:1px solid var(--p-b)}
+.tg-soc{background:rgba(251,113,133,.15);color:#fb7185;border:1px solid rgba(251,113,133,.25)}
+.tg-conv{background:rgba(52,211,153,.15);color:#34d399;border:1px solid rgba(52,211,153,.25)}
+.tag{font-size:.65rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.2rem .6rem;border-radius:999px}
+.chip{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:.18rem .6rem;border-radius:999px;background:var(--p-dim);color:var(--p);border:1px solid var(--p-b)}
+.fc{border-radius:20px;overflow:hidden;border:1px solid var(--gbd);background:var(--gb);cursor:pointer;transition:border-color .3s,box-shadow .3s}
+.fc:hover{border-color:var(--p-b);box-shadow:0 24px 64px rgba(163,230,53,.08)}
+.fc img,.bc img{transition:transform .6s ease}
+.fc:hover img,.bc:hover img{transform:scale(1.04)}
+.bc{border-radius:16px;overflow:hidden;border:1px solid var(--gbd);background:var(--gb);cursor:pointer;transition:border-color .3s,box-shadow .3s,transform .3s;display:flex;flex-direction:column}
+.bc:hover{border-color:var(--p-b);box-shadow:0 16px 48px rgba(163,230,53,.08);transform:translateY(-4px)}
+.sc2{background:rgba(255,255,255,.025);border:1px solid var(--gbd);border-radius:16px;padding:1.5rem}
+.ni{width:100%;padding:.65rem 1rem;background:rgba(255,255,255,.05);border:1px solid var(--gbd);border-radius:10px;color:#f1f5f9;font-size:.875rem;font-family:inherit;outline:none;transition:border-color .2s}
+.ni::placeholder{color:var(--mut)}
+.ni:focus{border-color:var(--p-b)}
+#mo{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.82);backdrop-filter:blur(12px);display:flex;align-items:flex-start;justify-content:center;padding:3rem 1rem 2rem;overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .25s}
+#mo.op{opacity:1;pointer-events:all}
+#mb{width:100%;max-width:720px;background:#0b1416;border:1px solid var(--gbd);border-radius:20px;overflow:hidden;transform:translateY(16px);transition:transform .28s ease}
+#mo.op #mb{transform:translateY(0)}
+.rv{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
+.rv.in{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+#ldr{position:fixed;inset:0;z-index:9999;background:#020b0d;display:flex;align-items:center;justify-content:center;transition:opacity .5s}
+#ldr.out{opacity:0;pointer-events:none}
+.sp{width:44px;height:44px;border-radius:50%;border:3px solid rgba(163,230,53,.15);border-top-color:#a3e635;animation:rot .8s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+#tst{position:fixed;bottom:5.5rem;left:50%;transform:translateX(-50%) translateY(12px);background:var(--p-dim);border:1px solid var(--p-b);color:var(--p);padding:.65rem 1.4rem;border-radius:999px;font-weight:600;font-size:.8rem;z-index:9998;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;backdrop-filter:blur(12px);white-space:nowrap}
+#tst.sh{opacity:1;transform:translateX(-50%) translateY(0)}
+.pg{width:38px;height:38px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;cursor:pointer;border:1px solid var(--gbd);background:var(--gb);color:var(--mut);transition:all .2s;font-family:inherit}
+.pg:hover{border-color:var(--p-b);color:var(--p)}
+.pg.on{background:var(--p-dim);border-color:var(--p-b);color:var(--p)}
+#mb-body h3{color:#f1f5f9;font-size:1.05rem;font-weight:700;margin-top:1.5rem;margin-bottom:.5rem}
+#mb-body p{color:#94a3b8;line-height:1.75}
+#mb-body strong{color:#a3e635;font-weight:700}
+@keyframes fu{0%{transform:translateY(0) rotate(0deg);opacity:0}10%{opacity:.5}90%{opacity:.15}100%{transform:translateY(-100vh) rotate(360deg);opacity:0}}
+.pt{position:absolute;border-radius:50%;background:#a3e635;animation:fu linear infinite;pointer-events:none}
+</style>
+</head>
+<body class="page-bg dark">
+
+<!-- Loader -->
+<div id="ldr">
+  <div style="text-align:center">
+    <div class="sp" style="margin:0 auto 12px"></div>
+    <p style="color:#a3e635;font-size:.7rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase">BoostMark</p>
+  </div>
+</div>
+
+<div id="sb"></div>
+<div id="tst" role="status" aria-live="polite"></div>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/212720909638" target="_blank" rel="noopener noreferrer" class="wa" aria-label="Contactez-nous sur WhatsApp">
+  <span class="material-symbols-outlined" style="font-size:18px" aria-hidden="true">chat</span>Contactez-nous
+</a>
+
+<!-- ══ NAVBAR ══ -->
+<header id="nav" role="banner">
+  <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between">
+    <a href="index.html" aria-label="BoostMark — Accueil">
+      <img src="https://i.postimg.cc/054mjc7j/jiko.png" alt="BoostMark" width="120" height="40" style="height:40px;width:auto;display:block"/>
+    </a>
+    <nav id="dnav" style="display:none" aria-label="Navigation principale">
+      <div style="display:flex;align-items:center;gap:2rem">
+        <a href="index.html#services" class="nl">Services</a>
+        <a href="index.html#pricing"  class="nl">Tarifs</a>
+        <a href="agence.html"         class="nl">Agence</a>
+        <a href="index.html#testimonials" class="nl">Avis</a>
+        <a href="blog.html"           class="nl on" aria-current="page">Blog</a>
+        <a href="index.html#contact"  class="nl">Contact</a>
+      </div>
+    </nav>
+    <div style="display:flex;align-items:center;gap:.75rem">
+      <a href="index.html#contact" class="btn" id="ncta" style="display:none">Démarrer</a>
+      <button id="ham" aria-label="Ouvrir le menu" aria-expanded="false"
+        style="width:40px;height:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:var(--gb);border:1px solid var(--gbd);border-radius:9px;cursor:pointer;padding:0">
+        <span id="h1" style="display:block;width:18px;height:1.5px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s"></span>
+        <span id="h2" style="display:block;width:18px;height:1.5px;background:#fff;border-radius:2px;transition:opacity .3s"></span>
+        <span id="h3" style="display:block;width:18px;height:1.5px;background:#fff;border-radius:2px;transition:transform .3s"></span>
+      </button>
+    </div>
+  </div>
+  <div id="mob" role="navigation" aria-label="Menu mobile">
+    <div class="glass" style="margin-top:.75rem;border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem">
+      <a href="index.html#services" style="color:#94a3b8;font-weight:500;text-decoration:none;padding:.5rem 0;border-bottom:1px solid var(--gbd)">Services</a>
+      <a href="index.html#pricing"  style="color:#94a3b8;font-weight:500;text-decoration:none;padding:.5rem 0;border-bottom:1px solid var(--gbd)">Tarifs</a>
+      <a href="agence.html"         style="color:#94a3b8;font-weight:500;text-decoration:none;padding:.5rem 0;border-bottom:1px solid var(--gbd)">Agence</a>
+      <a href="blog.html"           style="color:#a3e635;font-weight:700;text-decoration:none;padding:.5rem 0;border-bottom:1px solid var(--gbd)" aria-current="page">Blog</a>
+      <a href="index.html#contact"  style="color:#94a3b8;font-weight:500;text-decoration:none;padding:.5rem 0">Contact</a>
+      <a href="index.html#contact" class="btn" style="text-align:center;margin-top:.5rem">Démarrer maintenant →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ══ HERO ══ -->
+<section style="position:relative;padding:8rem 1.5rem 4rem;overflow:hidden" aria-label="En-tête blog">
+  <div id="ptc" style="position:absolute;inset:0;pointer-events:none;overflow:hidden" aria-hidden="true"></div>
+  <div style="max-width:1200px;margin:0 auto;text-align:center;position:relative;z-index:1">
+    <div class="rv badge">
+      <div class="ping" aria-hidden="true"><span></span><span></span></div>
+      Mis à jour chaque semaine
+    </div>
+    <h1 class="rv d1" style="font-size:clamp(2.5rem,7vw,5rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:1.25rem">
+      Blog &amp; <span class="tg">Actualités</span>
+    </h1>
+    <p class="rv d2" style="color:var(--mut);font-size:1.05rem;max-width:540px;margin:0 auto 2.5rem;line-height:1.7">
+      Stratégies, tendances et insights du marketing digital au Maroc — pour dominer votre marché en ligne.
+    </p>
+    <div class="rv d3" style="display:flex;flex-direction:column;align-items:center;gap:1rem">
+      <div class="si" style="width:100%;max-width:400px">
+        <span class="ic material-symbols-outlined" aria-hidden="true">search</span>
+        <input id="q" type="search" placeholder="Rechercher un article…" aria-label="Rechercher" oninput="doF()"/>
+      </div>
+      <div id="pills" style="display:flex;flex-wrap:wrap;gap:.5rem;justify-content:center" role="group" aria-label="Filtres catégorie">
+        <button class="pill on" data-cat="all"     onclick="setF(this)">Tous</button>
+        <button class="pill"    data-cat="seo"     onclick="setF(this)">SEO</button>
+        <button class="pill"    data-cat="design"  onclick="setF(this)">Design</button>
+        <button class="pill"    data-cat="strat"   onclick="setF(this)">Stratégie</button>
+        <button class="pill"    data-cat="ia"      onclick="setF(this)">IA</button>
+        <button class="pill"    data-cat="soc"     onclick="setF(this)">Social Media</button>
+        <button class="pill"    data-cat="conv"    onclick="setF(this)">Conversion</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ MAIN ══ -->
+<main style="max-width:1200px;margin:0 auto;padding:0 1.5rem 6rem">
+
+  <!-- Featured -->
+  <div id="fw" class="rv" style="margin-bottom:3rem">
+    <article class="fc" id="fa" data-cat="seo" data-idx="0"
+      data-title="comment doubler votre trafic organique en 90 jours"
+      onclick="openM(0)" tabindex="0" onkeydown="if(event.key==='Enter')openM(0)"
+      aria-label="Lire : Comment doubler votre trafic organique en 90 jours">
+      <div id="fg" style="display:grid;grid-template-columns:1fr 1fr;min-height:340px">
+        <div style="position:relative;overflow:hidden;min-height:220px">
+          <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=680&h=460&q=80&fit=crop"
+               alt="Tableau de bord SEO local Maroc" width="680" height="460" loading="eager"
+               style="width:100%;height:100%;object-fit:cover;display:block"/>
+          <div style="position:absolute;inset:0;background:linear-gradient(to right,transparent,rgba(11,20,22,.65))" aria-hidden="true"></div>
+          <div style="position:absolute;top:.85rem;left:.85rem">
+            <span class="tag tg-seo">SEO</span>
+          </div>
+          <div style="position:absolute;top:.85rem;right:.85rem">
+            <span style="background:#a3e635;color:#fff;font-size:.65rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:.28rem .7rem;border-radius:999px">⭐ À la une</span>
+          </div>
+        </div>
+        <div style="padding:2.25rem;display:flex;flex-direction:column;justify-content:center">
+          <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:1rem">
+            <span class="chip">8 min</span>
+            <time style="color:var(--mut);font-size:.75rem" datetime="2026-02-12">12 Fév 2026</time>
+          </div>
+          <h2 style="color:#fff;font-size:1.45rem;font-weight:900;line-height:1.3;margin-bottom:.85rem">
+            Comment doubler votre trafic organique en 90 jours avec le SEO local au Maroc
+          </h2>
+          <p style="color:var(--body);font-size:.875rem;line-height:1.7;margin-bottom:1.5rem">
+            Notre méthodologie exclusive pour propulser vos pages en première position sur Google.ma — linkbuilding local, Google My Business et content strategy ciblée.
+          </p>
+          <div style="display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:.6rem">
+              <div style="width:32px;height:32px;border-radius:50%;background:var(--p-dim);display:flex;align-items:center;justify-content:center;color:#a3e635;font-weight:800;font-size:.72rem" aria-hidden="true">KT</div>
+              <div>
+                <p style="color:#fff;font-weight:700;font-size:.78rem;line-height:1.2">Khadija T.</p>
+                <p style="color:var(--mut);font-size:.68rem">Directrice SEO</p>
+              </div>
+            </div>
+            <span style="color:#a3e635;font-weight:700;font-size:.78rem;display:flex;align-items:center;gap:.2rem" aria-hidden="true">
+              Lire <span class="material-symbols-outlined" style="font-size:15px">arrow_forward</span>
+            </span>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <!-- Grid + Sidebar -->
+  <div id="lay" style="display:grid;grid-template-columns:1fr 320px;gap:2.5rem;align-items:start">
+
+    <div>
+      <div id="gr" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1.25rem">
+
+        <!-- c1 -->
+        <article class="bc rv" data-cat="design" data-idx="1" data-title="les 7 tendances ui/ux 2026 maroc"
+          onclick="openM(1)" tabindex="0" onkeydown="if(event.key==='Enter')openM(1)" aria-label="Lire : Les 7 tendances UI/UX 2026">
+          <div style="height:172px;overflow:hidden;position:relative;flex-shrink:0">
+            <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=540&h=340&q=72&fit=crop"
+                 alt="Interface UI/UX design" width="540" height="340" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;top:.6rem;left:.6rem"><span class="tag tg-design">Design</span></div>
+          </div>
+          <div style="padding:1.1rem;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem">
+              <span class="chip">5 min</span>
+              <time style="color:var(--mut);font-size:.68rem" datetime="2026-02-08">8 Fév 2026</time>
+            </div>
+            <h3 style="color:#fff;font-weight:800;font-size:.9rem;line-height:1.4;margin-bottom:.5rem">Les 7 tendances UI/UX qui domineront 2026 au Maroc</h3>
+            <p style="color:var(--body);font-size:.8rem;line-height:1.65;flex:1">Glassmorphism, dark mode intelligent, microinteractions — ce que vos utilisateurs attendent.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;margin-top:.75rem;border-top:1px solid var(--gbd)">
+              <div style="display:flex;align-items:center;gap:.4rem">
+                <div style="width:24px;height:24px;border-radius:50%;background:rgba(167,139,250,.15);display:flex;align-items:center;justify-content:center;color:#a78bfa;font-weight:800;font-size:.62rem" aria-hidden="true">AM</div>
+                <span style="color:var(--mut);font-size:.72rem">Adam M.</span>
+              </div>
+              <span style="color:#a3e635;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:.15rem" aria-hidden="true">Lire <span class="material-symbols-outlined" style="font-size:12px">arrow_forward</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- c2 -->
+        <article class="bc rv d1" data-cat="ia" data-idx="2" data-title="chatgpt claude marketing maroc 2026"
+          onclick="openM(2)" tabindex="0" onkeydown="if(event.key==='Enter')openM(2)" aria-label="Lire : ChatGPT & Claude marketing Maroc">
+          <div style="height:172px;overflow:hidden;position:relative;flex-shrink:0">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=540&h=340&q=72&fit=crop"
+                 alt="IA générative marketing" width="540" height="340" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;top:.6rem;left:.6rem"><span class="tag tg-ia">IA</span></div>
+            <div style="position:absolute;top:.6rem;right:.6rem;background:#a3e635;color:#fff;font-size:.58rem;font-weight:900;letter-spacing:.07em;text-transform:uppercase;padding:.18rem .55rem;border-radius:999px">Nouveau</div>
+          </div>
+          <div style="padding:1.1rem;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem">
+              <span class="chip">10 min</span>
+              <time style="color:var(--mut);font-size:.68rem" datetime="2026-02-05">5 Fév 2026</time>
+            </div>
+            <h3 style="color:#fff;font-weight:800;font-size:.9rem;line-height:1.4;margin-bottom:.5rem">ChatGPT &amp; Claude pour le marketing au Maroc : guide 2026</h3>
+            <p style="color:var(--body);font-size:.8rem;line-height:1.65;flex:1">Intégrer l'IA générative dans votre workflow sans perdre l'authenticité locale.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;margin-top:.75rem;border-top:1px solid var(--gbd)">
+              <div style="display:flex;align-items:center;gap:.4rem">
+                <div style="width:24px;height:24px;border-radius:50%;background:var(--p-dim);display:flex;align-items:center;justify-content:center;color:#a3e635;font-weight:800;font-size:.62rem" aria-hidden="true">KT</div>
+                <span style="color:var(--mut);font-size:.72rem">Khadija T.</span>
+              </div>
+              <span style="color:#a3e635;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:.15rem" aria-hidden="true">Lire <span class="material-symbols-outlined" style="font-size:12px">arrow_forward</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- c3 -->
+        <article class="bc rv d2" data-cat="conv" data-idx="3" data-title="landing pages maroc 80% echouent"
+          onclick="openM(3)" tabindex="0" onkeydown="if(event.key==='Enter')openM(3)" aria-label="Lire : Pourquoi 80% des landing pages échouent">
+          <div style="height:172px;overflow:hidden;position:relative;flex-shrink:0">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=540&h=340&q=72&fit=crop"
+                 alt="Analytics conversion" width="540" height="340" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;top:.6rem;left:.6rem"><span class="tag tg-conv">Conversion</span></div>
+          </div>
+          <div style="padding:1.1rem;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem">
+              <span class="chip">7 min</span>
+              <time style="color:var(--mut);font-size:.68rem" datetime="2026-02-01">1 Fév 2026</time>
+            </div>
+            <h3 style="color:#fff;font-weight:800;font-size:.9rem;line-height:1.4;margin-bottom:.5rem">Landing pages au Maroc : pourquoi 80% échouent</h3>
+            <p style="color:var(--body);font-size:.8rem;line-height:1.65;flex:1">Analyse de 200+ landing pages — erreurs critiques et correctifs qui explosent votre taux de conversion.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;margin-top:.75rem;border-top:1px solid var(--gbd)">
+              <div style="display:flex;align-items:center;gap:.4rem">
+                <div style="width:24px;height:24px;border-radius:50%;background:rgba(34,197,94,.12);display:flex;align-items:center;justify-content:center;color:#22c55e;font-weight:800;font-size:.62rem" aria-hidden="true">YM</div>
+                <span style="color:var(--mut);font-size:.72rem">Yassine M.</span>
+              </div>
+              <span style="color:#a3e635;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:.15rem" aria-hidden="true">Lire <span class="material-symbols-outlined" style="font-size:12px">arrow_forward</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- c4 -->
+        <article class="bc rv d3" data-cat="soc" data-idx="4" data-title="instagram tiktok pme marocaines 2026"
+          onclick="openM(4)" tabindex="0" onkeydown="if(event.key==='Enter')openM(4)" aria-label="Lire : Instagram vs TikTok PME marocaines">
+          <div style="height:172px;overflow:hidden;position:relative;flex-shrink:0">
+            <img src="https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=540&h=340&q=72&fit=crop"
+                 alt="Réseaux sociaux" width="540" height="340" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;top:.6rem;left:.6rem"><span class="tag tg-soc">Social</span></div>
+          </div>
+          <div style="padding:1.1rem;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem">
+              <span class="chip">6 min</span>
+              <time style="color:var(--mut);font-size:.68rem" datetime="2026-01-28">28 Jan 2026</time>
+            </div>
+            <h3 style="color:#fff;font-weight:800;font-size:.9rem;line-height:1.4;margin-bottom:.5rem">Instagram vs TikTok pour les PME marocaines en 2026</h3>
+            <p style="color:var(--body);font-size:.8rem;line-height:1.65;flex:1">Chiffres exclusifs et recommandation budgétaire concrète pour votre marché.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;margin-top:.75rem;border-top:1px solid var(--gbd)">
+              <div style="display:flex;align-items:center;gap:.4rem">
+                <div style="width:24px;height:24px;border-radius:50%;background:rgba(251,113,133,.12);display:flex;align-items:center;justify-content:center;color:#fb7185;font-weight:800;font-size:.62rem" aria-hidden="true">SB</div>
+                <span style="color:var(--mut);font-size:.72rem">Sara B.</span>
+              </div>
+              <span style="color:#a3e635;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:.15rem" aria-hidden="true">Lire <span class="material-symbols-outlined" style="font-size:12px">arrow_forward</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- c5 -->
+        <article class="bc rv" data-cat="strat" data-idx="5" data-title="strategie digitale 2026 playbook entrepreneurs maroc"
+          onclick="openM(5)" tabindex="0" onkeydown="if(event.key==='Enter')openM(5)" aria-label="Lire : Stratégie digitale 2026 playbook">
+          <div style="height:172px;overflow:hidden;position:relative;flex-shrink:0">
+            <img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=540&h=340&q=72&fit=crop"
+                 alt="Stratégie digitale" width="540" height="340" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;top:.6rem;left:.6rem"><span class="tag tg-strat">Stratégie</span></div>
+          </div>
+          <div style="padding:1.1rem;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem">
+              <span class="chip">12 min</span>
+              <time style="color:var(--mut);font-size:.68rem" datetime="2026-01-22">22 Jan 2026</time>
+            </div>
+            <h3 style="color:#fff;font-weight:800;font-size:.9rem;line-height:1.4;margin-bottom:.5rem">Stratégie digitale 2026 : le playbook pour entrepreneurs marocains</h3>
+            <p style="color:var(--body);font-size:.8rem;line-height:1.65;flex:1">De la visibilité à la vente — construire un écosystème digital scalable.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;margin-top:.75rem;border-top:1px solid var(--gbd)">
+              <div style="display:flex;align-items:center;gap:.4rem">
+                <div style="width:24px;height:24px;border-radius:50%;background:rgba(251,191,36,.12);display:flex;align-items:center;justify-content:center;color:#fbbf24;font-weight:800;font-size:.62rem" aria-hidden="true">KT</div>
+                <span style="color:var(--mut);font-size:.72rem">Khadija T.</span>
+              </div>
+              <span style="color:#a3e635;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:.15rem" aria-hidden="true">Lire <span class="material-symbols-outlined" style="font-size:12px">arrow_forward</span></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- c6 -->
+        <article class="bc rv d1" data-cat="seo" data-idx="6" data-title="core web vitals 2026 vitesse site maroc"
+          onclick="openM(6)" tabindex="0" onkeydown="if(event.key==='Enter')openM(6)" aria-label="Lire : Core Web Vitals 2026">
+          <div style="height:172px;overflow:hidden;position:relative;flex-shrink:0">
+            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=540&h=340&q=72&fit=crop"
+                 alt="Performance web vitesse" width="540" height="340" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+            <div style="position:absolute;top:.6rem;left:.6rem"><span class="tag tg-seo">SEO</span></div>
+          </div>
+          <div style="padding:1.1rem;display:flex;flex-direction:column;flex:1">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.65rem">
+              <span class="chip">9 min</span>
+              <time style="color:var(--mut);font-size:.68rem" datetime="2026-01-15">15 Jan 2026</time>
+            </div>
+            <h3 style="color:#fff;font-weight:800;font-size:.9rem;line-height:1.4;margin-bottom:.5rem">Core Web Vitals 2026 : optimiser la vitesse de votre site</h3>
+            <p style="color:var(--body);font-size:.8rem;line-height:1.65;flex:1">LCP, INP, CLS — le guide complet pour des scores parfaits sur Google.ma.</p>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding-top:.75rem;margin-top:.75rem;border-top:1px solid var(--gbd)">
+              <div style="display:flex;align-items:center;gap:.4rem">
+                <div style="width:24px;height:24px;border-radius:50%;background:rgba(96,165,250,.12);display:flex;align-items:center;justify-content:center;color:#60a5fa;font-weight:800;font-size:.62rem" aria-hidden="true">OM</div>
+                <span style="color:var(--mut);font-size:.72rem">Omar M.</span>
+              </div>
+              <span style="color:#a3e635;font-size:.72rem;font-weight:700;display:flex;align-items:center;gap:.15rem" aria-hidden="true">Lire <span class="material-symbols-outlined" style="font-size:12px">arrow_forward</span></span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- Empty state -->
+      <div id="emp" style="display:none;text-align:center;padding:4rem 0">
+        <span class="material-symbols-outlined" style="font-size:48px;color:#1e293b;display:block;margin-bottom:1rem" aria-hidden="true">search_off</span>
+        <p style="color:var(--mut);font-weight:500">Aucun article trouvé.</p>
+        <button onclick="rst()" style="margin-top:1rem;color:#a3e635;font-size:.875rem;font-weight:700;background:none;border:none;cursor:pointer;text-decoration:underline">Réinitialiser</button>
+      </div>
+
+      <!-- Pagination -->
+      <div id="pgn" style="display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:2.5rem">
+        <div class="pg on" aria-current="page">1</div>
+        <button class="pg" onclick="tst('📄 Page 2 bientôt disponible !')">2</button>
+        <button class="pg" onclick="tst('📄 Page 3 bientôt disponible !')">3</button>
+        <span style="color:var(--mut);padding:0 .2rem">…</span>
+        <button class="pg" onclick="tst('📄 Prochaine page bientôt !')" aria-label="Page suivante">
+          <span class="material-symbols-outlined" style="font-size:15px">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside aria-label="Sidebar">
+
+      <!-- Newsletter -->
+      <div class="sc2 glass-p rv" style="margin-bottom:1.5rem">
+        <div style="display:flex;align-items:center;gap:.75rem;margin-bottom:.85rem">
+          <div style="width:36px;height:36px;border-radius:9px;background:var(--p-dim);display:flex;align-items:center;justify-content:center" aria-hidden="true">
+            <span class="material-symbols-outlined" style="font-size:17px;color:#a3e635">mail</span>
+          </div>
+          <div>
+            <p style="color:#fff;font-weight:700;font-size:.85rem">Newsletter</p>
+            <p style="color:var(--mut);font-size:.7rem">1 email/semaine · 0 spam</p>
+          </div>
+        </div>
+        <p style="color:var(--body);font-size:.8rem;line-height:1.65;margin-bottom:1rem">Les meilleurs insights marketing digital directement dans votre boîte.</p>
+        <div style="display:flex;flex-direction:column;gap:.6rem">
+          <input id="nl" type="email" class="ni" placeholder="votre@email.com" aria-label="Email pour newsletter"/>
+          <button onclick="sub()" class="btn" style="width:100%;text-align:center;border:none;cursor:pointer;font-size:.85rem">S'abonner gratuitement →</button>
+        </div>
+        <p style="color:#1e3a2a;font-size:.68rem;text-align:center;margin-top:.75rem">+2 400 abonnés actifs</p>
+      </div>
+
+      <!-- Popular -->
+      <div class="sc2 rv d1" style="margin-bottom:1.5rem">
+        <h2 style="color:#fff;font-weight:700;font-size:.85rem;margin-bottom:1.1rem;display:flex;align-items:center;gap:.4rem">
+          <span class="material-symbols-outlined" style="font-size:15px;color:#a3e635" aria-hidden="true">local_fire_department</span>
+          Articles populaires
+        </h2>
+        <div style="display:flex;flex-direction:column;gap:.85rem">
+          <button onclick="openM(0)" style="display:flex;gap:.65rem;text-align:left;background:none;border:none;cursor:pointer;width:100%" aria-label="Lire : Doubler le trafic organique">
+            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=100&h=100&q=65&fit=crop"
+                 alt="" width="56" height="56" loading="lazy"
+                 style="width:56px;height:56px;border-radius:9px;object-fit:cover;flex-shrink:0"/>
+            <div>
+              <p style="color:#cbd5e1;font-size:.78rem;font-weight:600;line-height:1.4;margin-bottom:.2rem">Doubler votre trafic organique en 90 jours</p>
+              <p style="color:var(--mut);font-size:.68rem">12 Fév · 8 min</p>
+            </div>
+          </button>
+          <button onclick="openM(2)" style="display:flex;gap:.65rem;text-align:left;background:none;border:none;cursor:pointer;width:100%" aria-label="Lire : ChatGPT & Claude marketing">
+            <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=100&h=100&q=65&fit=crop"
+                 alt="" width="56" height="56" loading="lazy"
+                 style="width:56px;height:56px;border-radius:9px;object-fit:cover;flex-shrink:0"/>
+            <div>
+              <p style="color:#cbd5e1;font-size:.78rem;font-weight:600;line-height:1.4;margin-bottom:.2rem">ChatGPT &amp; Claude pour le marketing</p>
+              <p style="color:var(--mut);font-size:.68rem">5 Fév · 10 min</p>
+            </div>
+          </button>
+          <button onclick="openM(3)" style="display:flex;gap:.65rem;text-align:left;background:none;border:none;cursor:pointer;width:100%" aria-label="Lire : Landing pages Maroc">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=100&h=100&q=65&fit=crop"
+                 alt="" width="56" height="56" loading="lazy"
+                 style="width:56px;height:56px;border-radius:9px;object-fit:cover;flex-shrink:0"/>
+            <div>
+              <p style="color:#cbd5e1;font-size:.78rem;font-weight:600;line-height:1.4;margin-bottom:.2rem">Pourquoi 80% des landing pages échouent</p>
+              <p style="color:var(--mut);font-size:.68rem">1 Fév · 7 min</p>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- Tags -->
+      <div class="sc2 rv d2" style="margin-bottom:1.5rem">
+        <h2 style="color:#fff;font-weight:700;font-size:.85rem;margin-bottom:1rem;display:flex;align-items:center;gap:.4rem">
+          <span class="material-symbols-outlined" style="font-size:15px;color:#a3e635" aria-hidden="true">tag</span>Tags
+        </h2>
+        <div style="display:flex;flex-wrap:wrap;gap:.4rem">
+          <button class="pill" onclick="ap('seo')">SEO Local</button>
+          <button class="pill" onclick="ap('conv')">Landing Page</button>
+          <button class="pill" onclick="ap('strat')">Branding</button>
+          <button class="pill" onclick="ap('ia')">IA & Automatisation</button>
+          <button class="pill" onclick="ap('soc')">E-commerce</button>
+          <button class="pill" onclick="ap('strat')">Copywriting</button>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="sc2 rv d3" style="position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 80% 20%,rgba(163,230,53,.07) 0%,transparent 70%)" aria-hidden="true"></div>
+        <div style="position:relative">
+          <p style="color:#a3e635;font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.4rem">Passez à l'action</p>
+          <h3 style="color:#fff;font-weight:900;font-size:1.05rem;line-height:1.35;margin-bottom:.7rem">Prêt à dominer votre marché digital ?</h3>
+          <p style="color:var(--body);font-size:.8rem;margin-bottom:1.1rem;line-height:1.6">Résultats garantis en 7 jours.</p>
+          <a href="index.html#contact" class="btn" style="display:block;text-align:center;width:100%">Démarrer maintenant →</a>
+        </div>
+      </div>
+
+    </aside>
+  </div>
+</main>
+
+<!-- ══ FOOTER ══ -->
+<footer style="background:#010607;border-top:1px solid var(--gbd);padding:4rem 1.5rem" role="contentinfo">
+  <div style="max-width:1200px;margin:0 auto">
+    <div id="fg2" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem">
+      <div>
+        <img src="https://i.postimg.cc/054mjc7j/jiko.png" alt="BoostMark" width="120" height="40" style="height:40px;width:auto;margin-bottom:1rem;display:block"/>
+        <p style="color:var(--mut);font-size:.83rem;line-height:1.7;max-width:300px">L'agence marketing digital de référence au Maroc. Nous transformons votre vision en résultats mesurables.</p>
+        <div style="display:flex;gap:.6rem;margin-top:1.2rem">
+          <a href="https://wa.me/212720909638" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+            style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gb);border:1px solid var(--gbd);color:var(--mut);transition:color .2s"
+            onmouseover="this.style.color='#22c55e'" onmouseout="this.style.color='var(--mut)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/boostmark_01" target="_blank" rel="noopener noreferrer" aria-label="Instagram"
+            style="width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--gb);border:1px solid var(--gbd);color:var(--mut);transition:color .2s"
+            onmouseover="this.style.color='#e1306c'" onmouseout="this.style.color='var(--mut)'">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <h3 style="color:#fff;font-weight:700;font-size:.85rem;margin-bottom:1rem">Catégories</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li><button onclick="ap('seo')" style="color:var(--mut);font-size:.83rem;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">SEO &amp; Référencement</button></li>
+          <li><button onclick="ap('design')" style="color:var(--mut);font-size:.83rem;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Design UI/UX</button></li>
+          <li><button onclick="ap('ia')" style="color:var(--mut);font-size:.83rem;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Intelligence Artificielle</button></li>
+          <li><button onclick="ap('strat')" style="color:var(--mut);font-size:.83rem;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Stratégie Digitale</button></li>
+          <li><button onclick="ap('soc')" style="color:var(--mut);font-size:.83rem;background:none;border:none;cursor:pointer;text-align:left;font-family:inherit;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Social Media</button></li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="color:#fff;font-weight:700;font-size:.85rem;margin-bottom:1rem">Liens rapides</h3>
+        <ul style="list-style:none;display:flex;flex-direction:column;gap:.55rem">
+          <li><a href="index.html#pricing" style="color:var(--mut);font-size:.83rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Tarifs</a></li>
+          <li><a href="index.html#testimonials" style="color:var(--mut);font-size:.83rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Témoignages</a></li>
+          <li><a href="index.html#faq" style="color:var(--mut);font-size:.83rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">FAQ</a></li>
+          <li><a href="index.html#contact" style="color:var(--mut);font-size:.83rem;text-decoration:none;transition:color .2s" onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='var(--mut)'">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div style="border-top:1px solid var(--gbd);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem">
+      <p style="color:#1e293b;font-size:.73rem">© 2026 BoostMark Agency. Conçu avec passion à Casablanca.</p>
+      <p style="color:#1e293b;font-size:.73rem">Tous droits réservés.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ MODAL ══ -->
+<div id="mo" role="dialog" aria-modal="true" aria-labelledby="mt" onclick="if(event.target===this)closeM()">
+  <div id="mb">
+    <div style="height:230px;overflow:hidden;position:relative">
+      <img id="mi" src="" alt="" width="720" height="230" style="width:100%;height:100%;object-fit:cover;display:block"/>
+      <div style="position:absolute;inset:0;background:linear-gradient(to top,#0b1416,transparent 60%)" aria-hidden="true"></div>
+      <div style="position:absolute;top:.85rem;left:.85rem" id="mtw"></div>
+      <button onclick="closeM()" aria-label="Fermer"
+        style="position:absolute;top:.85rem;right:.85rem;width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid var(--gbd);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;transition:color .2s;padding:0"
+        onmouseover="this.style.color='#a3e635'" onmouseout="this.style.color='#fff'">
+        <span class="material-symbols-outlined" style="font-size:17px" aria-hidden="true">close</span>
+      </button>
+    </div>
+    <div style="padding:1.75rem 2rem 2rem">
+      <h2 id="mt" style="color:#fff;font-size:1.3rem;font-weight:900;line-height:1.3;margin-bottom:.9rem"></h2>
+      <div style="display:flex;align-items:center;gap:.85rem;padding-bottom:1.1rem;margin-bottom:1.1rem;border-bottom:1px solid var(--gbd);flex-wrap:wrap">
+        <div id="mau" style="display:flex;align-items:center;gap:.45rem"></div>
+        <time id="mdt" style="color:var(--mut);font-size:.73rem"></time>
+        <span id="mch" class="chip" style="margin-left:auto"></span>
+      </div>
+      <div id="mb-body" style="display:flex;flex-direction:column;gap:.65rem"></div>
+      <div style="display:flex;gap:.65rem;margin-top:1.75rem;flex-wrap:wrap">
+        <a href="index.html#contact" class="btn" style="flex:1;text-align:center">Lancer mon projet →</a>
+        <button onclick="closeM()" style="flex:1;padding:.6rem 1rem;background:var(--gb);border:1px solid var(--gbd);border-radius:10px;color:#94a3b8;font-weight:700;font-size:.85rem;cursor:pointer;font-family:inherit;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#94a3b8'">← Retour</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+'use strict';
+const A=[
+  {title:'Comment doubler votre trafic organique en 90 jours avec le SEO local au Maroc',cat:'SEO',tc:'tg-seo',img:'https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?w=720&h=360&q=80&fit=crop',date:'12 Fév 2026',dt:'2026-02-12',read:'8 min',author:'Khadija T.',ini:'KT',ac:'background:rgba(163,230,53,.15);color:#a3e635',body:['Le SEO local est l\'une des stratégies les plus puissantes pour les entreprises marocaines. Il cible des requêtes géo-spécifiques qui convertissent 3× plus que le SEO national.','<h3>1. Google My Business</h3><p>Complétez intégralement votre fiche GMB : photos HD, horaires exacts, réponses à tous les avis.</p>','<h3>2. Contenu hyper-local</h3><p>Mentionnez des quartiers, événements locaux, références culturelles marocaines. Google récompense la pertinence géographique.</p>','<h3>3. Backlinks locaux</h3><p>Partenariats avec Hespress, Le360, L\'Économiste, annuaires locaux et influenceurs régionaux.</p>','En appliquant ces 3 piliers sur 90 jours, nos clients ont observé <strong>+127% de trafic organique</strong> en moyenne.']},
+  {title:'Les 7 tendances UI/UX qui domineront 2026 au Maroc',cat:'Design',tc:'tg-design',img:'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=720&h=360&q=80&fit=crop',date:'8 Fév 2026',dt:'2026-02-08',read:'5 min',author:'Adam M.',ini:'AM',ac:'background:rgba(167,139,250,.15);color:#a78bfa',body:['Le design digital marocain est en mutation rapide. Les utilisateurs sont exposés aux meilleurs standards internationaux.','<h3>1. Glassmorphism</h3><p>Les interfaces translucides créent une profondeur très appréciée du public urbain marocain.</p>','<h3>2. Dark mode intelligent</h3><p>Les sites sans dark mode perdent jusqu\'à 23% de l\'engagement mobile.</p>','<h3>3. Micro-interactions narratives</h3><p>Les animations subtiles augmentent le temps passé sur page de <strong>40% en moyenne</strong>.</p>']},
+  {title:'ChatGPT & Claude pour le marketing au Maroc : guide 2026',cat:'IA',tc:'tg-ia',img:'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=720&h=360&q=80&fit=crop',date:'5 Fév 2026',dt:'2026-02-05',read:'10 min',author:'Khadija T.',ini:'KT',ac:'background:rgba(163,230,53,.15);color:#a3e635',body:['L\'IA générative a bouleversé le marketing digital. Au Maroc, son adoption reste inégale — créant une opportunité majeure.','<h3>Où l\'IA excelle</h3><p>A/B testing de copy, briefs créatifs, analyse concurrentielle, personnalisation d\'emailings à grande échelle.</p>','<h3>Les limites</h3><p>L\'IA ne remplace pas la connaissance culturelle locale. Un contenu sans curation humaine sonne "importé".</p>','<h3>Notre workflow hybride</h3><p>IA pour la structure, experts locaux pour l\'authenticité. Résultat : <strong>3× plus de contenu, 2× moins de temps</strong>.</p>']},
+  {title:'Landing pages au Maroc : pourquoi 80% échouent',cat:'Conversion',tc:'tg-conv',img:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=720&h=360&q=80&fit=crop',date:'1 Fév 2026',dt:'2026-02-01',read:'7 min',author:'Yassine M.',ini:'YM',ac:'background:rgba(34,197,94,.12);color:#22c55e',body:['Après avoir audité 200+ landing pages marocaines, nous avons identifié les patterns d\'échec récurrents.','<h3>Erreur #1 : Trop de messages</h3><p>1 page = 1 objectif = 1 CTA. 74% des pages noient le visiteur sous des informations non hiérarchisées.</p>','<h3>Erreur #2 : Vitesse catastrophique</h3><p>68% du trafic est mobile. Une page à +3s perd <strong>53% de ses visiteurs</strong>.</p>','<h3>Erreur #3 : Preuve sociale absente</h3><p>Les témoignages doivent être locaux, spécifiques et vérifiables.</p>']},
+  {title:'Instagram vs TikTok pour les PME marocaines en 2026',cat:'Social Media',tc:'tg-soc',img:'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?w=720&h=360&q=80&fit=crop',date:'28 Jan 2026',dt:'2026-01-28',read:'6 min',author:'Sara B.',ini:'SB',ac:'background:rgba(251,113,133,.12);color:#fb7185',body:['Les deux plateformes sont incontournables, mais leur usage diffère radicalement au Maroc.','<h3>Instagram : la plateforme de confiance</h3><p>Référence pour la crédibilité de marque. Les décisions d\'achat se prennent là, surtout en mode, food et services premium.</p>','<h3>TikTok : la machine à viralité</h3><p>11M d\'utilisateurs actifs au Maroc. Portée organique impossible à reproduire ailleurs.</p>','<h3>Notre recommandation</h3><p>Budget suggéré : <strong>60% Instagram / 40% TikTok</strong>.</p>']},
+  {title:'Stratégie digitale 2026 : le playbook pour entrepreneurs marocains',cat:'Stratégie',tc:'tg-strat',img:'https://images.unsplash.com/photo-1553877522-43269d4ea984?w=720&h=360&q=80&fit=crop',date:'22 Jan 2026',dt:'2026-01-22',read:'12 min',author:'Khadija T.',ini:'KT',ac:'background:rgba(251,191,36,.12);color:#fbbf24',body:['Les stratégies de 2023 sont obsolètes. Voici le nouveau playbook pour dominer votre marché.','<h3>Phase 1 — Fondations (mois 1-2)</h3><p>Audit digital, personas marocains, tracking et KPIs. Sans ces bases, toute action est aveugle.</p>','<h3>Phase 2 — Acquisition (mois 3-6)</h3><p>SEO local + Google Ads + Social Ads. Budget recommandé : 15-20% du CA cible.</p>','<h3>Phase 3 — Fidélisation (mois 6+)</h3><p>Email marketing automatisé, communauté, programme de fidélité. Coût de rétention <strong>5× inférieur</strong> à l\'acquisition.</p>']},
+  {title:'Core Web Vitals 2026 : optimiser la vitesse de votre site',cat:'SEO',tc:'tg-seo',img:'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=720&h=360&q=80&fit=crop',date:'15 Jan 2026',dt:'2026-01-15',read:'9 min',author:'Omar M.',ini:'OM',ac:'background:rgba(96,165,250,.12);color:#60a5fa',body:['La performance technique est un facteur SEO critique depuis l\'intégration des Core Web Vitals dans l\'algorithme Google.','<h3>LCP — Largest Contentful Paint</h3><p>Objectif : &lt;2,5s. Solution : images WebP/AVIF, CDN géolocalisé, lazy loading.</p>','<h3>INP — Interaction to Next Paint</h3><p>Minimisez le JavaScript bloquant, utilisez des web workers pour les tâches lourdes.</p>','<h3>CLS — Cumulative Layout Shift</h3><p>Score cible : &lt;0,1. Réservez l\'espace pour les images, utilisez font-display:swap.</p>']}
+];
+
+let cat='all';
+
+window.addEventListener('load',()=>{
+  setTimeout(()=>{
+    const l=document.getElementById('ldr');
+    l.classList.add('out');
+    setTimeout(()=>l.remove(),600);
+    initRv();initPt();initRsp();
+  },480);
+});
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('sb').style.width=(window.scrollY/(document.documentElement.scrollHeight-innerHeight)*100)+'%';
+  document.getElementById('nav').classList.toggle('sc',window.scrollY>40);
+},{passive:true});
+
+function initRv(){
+  const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in');}),{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+}
+
+function initPt(){
+  const c=document.getElementById('ptc');
+  for(let i=0;i<12;i++){
+    const p=document.createElement('div');p.className='pt';
+    const s=2+Math.random()*3;
+    p.style.cssText=`left:${Math.random()*100}%;bottom:0;width:${s}px;height:${s}px;animation-duration:${9+Math.random()*10}s;animation-delay:${Math.random()*8}s;opacity:${.2+Math.random()*.4}`;
+    c.appendChild(p);
+  }
+}
+
+function initRsp(){
+  const mq=window.matchMedia('(min-width:768px)');
+  function apply(m){
+    document.getElementById('dnav').style.display=m.matches?'block':'none';
+    document.getElementById('ncta').style.display=m.matches?'inline-block':'none';
+    document.getElementById('lay').style.gridTemplateColumns=m.matches?'1fr 320px':'1fr';
+    document.getElementById('fg').style.gridTemplateColumns=m.matches?'1fr 1fr':'1fr';
+    document.getElementById('gr').style.gridTemplateColumns=m.matches?'repeat(2,1fr)':'1fr';
+    document.getElementById('fg2').style.gridTemplateColumns=m.matches?'2fr 1fr 1fr':'1fr';
+  }
+  apply(mq);mq.addEventListener('change',apply);
+}
+
+let mo=false;
+document.getElementById('ham').addEventListener('click',()=>{
+  mo=!mo;
+  document.getElementById('mob').classList.toggle('op',mo);
+  document.getElementById('ham').setAttribute('aria-expanded',mo);
+  document.getElementById('h1').style.transform=mo?'rotate(45deg) translate(3px,3px)':'';
+  document.getElementById('h2').style.opacity=mo?'0':'1';
+  document.getElementById('h3').style.transform=mo?'rotate(-45deg) translate(3px,-3px)':'';
+});
+
+function setF(btn){
+  cat=btn.dataset.cat;
+  document.querySelectorAll('#pills .pill').forEach(p=>p.classList.toggle('on',p===btn));
+  doF();
+}
+function ap(c){
+  const b=document.querySelector(`#pills [data-cat="${c}"]`);
+  if(b){setF(b);window.scrollTo({top:0,behavior:'smooth'});}
+}
+function doF(){
+  const q=document.getElementById('q').value.toLowerCase().trim();
+  let v=0;
+  const fa=document.getElementById('fa');
+  const fs=(cat==='all'||fa.dataset.cat===cat)&&(!q||fa.dataset.title.includes(q));
+  document.getElementById('fw').style.display=fs?'':'none';
+  if(fs)v++;
+  document.querySelectorAll('#gr article').forEach(el=>{
+    const s=(cat==='all'||el.dataset.cat===cat)&&(!q||el.dataset.title.includes(q));
+    el.style.display=s?'':'none';if(s)v++;
+  });
+  document.getElementById('emp').style.display=v===0?'block':'none';
+  document.getElementById('pgn').style.display=v===0?'none':'flex';
+}
+function rst(){document.getElementById('q').value='';ap('all');}
+
+function openM(i){
+  const a=A[i];
+  document.getElementById('mi').src=a.img;
+  document.getElementById('mi').alt=a.title;
+  document.getElementById('mt').textContent=a.title;
+  document.getElementById('mdt').textContent=a.date;
+  document.getElementById('mdt').setAttribute('datetime',a.dt);
+  document.getElementById('mch').textContent=a.read;
+  document.getElementById('mtw').innerHTML=`<span class="tag ${a.tc}">${a.cat}</span>`;
+  document.getElementById('mau').innerHTML=`<div style="width:28px;height:28px;border-radius:50%;${a.ac};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.65rem" aria-hidden="true">${a.ini}</div><span style="color:#cbd5e1;font-size:.78rem;font-weight:600">${a.author}</span>`;
+  document.getElementById('mb-body').innerHTML=a.body.map(p=>p.startsWith('<')?p:`<p>${p}</p>`).join('');
+  const ov=document.getElementById('mo');
+  ov.classList.add('op');ov.scrollTop=0;
+  document.body.style.overflow='hidden';
+}
+function closeM(){
+  document.getElementById('mo').classList.remove('op');
+  document.body.style.overflow='';
+}
+
+function sub(){
+  const v=document.getElementById('nl').value.trim();
+  if(!v||!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){tst('⚠️ Email invalide');return;}
+  document.getElementById('nl').value='';
+  tst('✓ Abonnement confirmé ! Bienvenue dans la famille BoostMark 🎉');
+}
+
+let _t;
+function tst(msg){
+  const el=document.getElementById('tst');
+  el.textContent=msg;el.classList.add('sh');
+  clearTimeout(_t);_t=setTimeout(()=>el.classList.remove('sh'),3000);
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM();});
+</script>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Blog","name":"BoostMark Blog","url":"https://khadijatiti-oss.github.io/website-BoostMark/blog.html","description":"Conseils SEO, design et stratégie digitale pour entrepreneurs marocains.","publisher":{"@type":"Organization","name":"BoostMark","url":"https://khadijatiti-oss.github.io/website-BoostMark/"}}
+</script>
+</body>
+</html>
