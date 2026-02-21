@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="fr" class="dark">
+<html lang="fr" class="dark" dir="ltr">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BoostMark | Agence SaaS de Conversion Ultra-Moderne</title>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet"/>
 <script>
 tailwind.config = {
@@ -230,6 +231,58 @@ tailwind.config = {
 
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Image quality enhancements */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  .service-card img {
+    filter: contrast(1.05) saturate(1.1) brightness(1.02);
+    transition: filter 0.5s ease, transform 0.7s ease;
+  }
+  .service-card:hover img {
+    filter: contrast(1.08) saturate(1.2) brightness(1.05);
+  }
+  /* Hero image polish */
+  .hero-img {
+    filter: contrast(1.05) saturate(1.08) brightness(1.0);
+  }
+
+  /* RTL Support */
+  [dir="rtl"] body { font-family: 'Cairo', sans-serif; }
+  [dir="rtl"] .testimonials-track { flex-direction: row-reverse; }
+
+  /* Language Switcher */
+  #lang-switcher { position: relative; }
+  #lang-dropdown {
+    position: absolute; top: calc(100% + 8px); right: 0;
+    min-width: 140px;
+    background: rgba(2,11,13,0.95);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    backdrop-filter: blur(16px);
+    opacity: 0; transform: translateY(-8px) scale(0.97);
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 999;
+  }
+  [dir="rtl"] #lang-dropdown { right: auto; left: 0; }
+  #lang-dropdown.open { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+  .lang-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 10px 16px; cursor: pointer;
+    transition: background 0.15s;
+    font-size: 0.875rem; font-weight: 600; color: #cbd5e1;
+  }
+  .lang-option:hover { background: rgba(163,230,53,0.1); color: #a3e635; }
+  .lang-option.active { color: #a3e635; background: rgba(163,230,53,0.08); }
+  .lang-flag { font-size: 1.1rem; }
+
+  /* Transition for language change */
+  body.lang-transitioning { opacity: 0; transition: opacity 0.2s ease; }
+  body.lang-ready { opacity: 1; transition: opacity 0.2s ease; }
 </style>
 </head>
 <body class="bg-main selection:bg-primary/30">
@@ -262,37 +315,58 @@ tailwind.config = {
 <header id="navbar" class="fixed top-0 z-40 w-full px-6 py-4 transition-all duration-300">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
     <!-- Logo -->
-    <a href="#" class="flex items-center gap-2 group">
-      <img src="https://i.postimg.cc/GtgCQ4JD/unnamed.jpg" />
-    </a>
+      <a href="#" class="flex items-center group">
+        <img src="https://i.postimg.cc/054mjc7j/jiko.png" alt="BoostMark Logo" class="h-10 w-auto object-contain" />
+      </a>
 
     <!-- Desktop Nav -->
     <nav class="hidden md:flex items-center gap-8">
-      <a href="#services" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+      <a href="#services" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group" data-i18n="nav.services">
         Services
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#pricing" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+      <a href="#pricing" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group" data-i18n="nav.pricing">
         Tarifs
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#testimonials" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+      <a href="#testimonials" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group" data-i18n="nav.testimonials">
         Avis
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#faq" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+      <a href="#faq" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group" data-i18n="nav.faq">
         FAQ
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
-      <a href="#contact" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group">
+      <a href="#contact" class="nav-link text-sm font-medium text-slate-400 hover:text-primary transition-colors relative group" data-i18n="nav.contact">
         Contact
         <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
       </a>
     </nav>
 
     <div class="flex items-center gap-3">
-      <button onclick="showToast('Connectez-vous via notre app mobile !')" class="hidden sm:block text-sm font-semibold text-white px-4 py-2 hover:text-primary transition-colors">Se connecter</button>
-      <a href="#contact" class="bg-primary text-white text-sm font-bold px-5 py-2.5 rounded-lg glow-btn transition-all inline-block">Démarrer</a>
+      <button onclick="showToast('Connectez-vous via notre app mobile !')" class="hidden sm:block text-sm font-semibold text-white px-4 py-2 hover:text-primary transition-colors" id="nav-login">Se connecter</button>
+
+      <!-- Language Switcher -->
+      <div id="lang-switcher">
+        <button onclick="toggleLangDropdown()" class="flex items-center gap-1.5 glass px-3 py-2 rounded-lg text-slate-300 hover:text-primary hover:border-primary/30 transition-all text-sm font-bold" id="lang-btn">
+          <span id="lang-flag-current">🇫🇷</span>
+          <span id="lang-code-current">FR</span>
+          <span class="material-symbols-outlined" style="font-size:14px">expand_more</span>
+        </button>
+        <div id="lang-dropdown">
+          <div class="lang-option active" onclick="setLanguage('fr')" id="lang-opt-fr">
+            <span class="lang-flag">🇫🇷</span> Français
+          </div>
+          <div class="lang-option" onclick="setLanguage('en')" id="lang-opt-en">
+            <span class="lang-flag">🇬🇧</span> English
+          </div>
+          <div class="lang-option" onclick="setLanguage('ar')" id="lang-opt-ar">
+            <span class="lang-flag">🇲🇦</span> العربية
+          </div>
+        </div>
+      </div>
+
+      <a href="#contact" class="bg-primary text-white text-sm font-bold px-5 py-2.5 rounded-lg glow-btn transition-all inline-block" id="nav-cta" data-i18n="nav.cta">Démarrer</a>
       <!-- Mobile hamburger -->
       <button id="hamburger" class="md:hidden w-10 h-10 glass rounded-lg flex items-center justify-center" aria-label="Menu">
         <div class="hamburger-icon">
@@ -342,16 +416,16 @@ tailwind.config = {
       <h1 class="reveal delay-1 text-6xl md:text-8xl font-black text-white leading-[1.05] tracking-tight mb-6">
         Boost<span class="text-gradient">Mark</span>
       </h1>
-      <p class="reveal delay-2 text-xl text-slate-400 font-medium leading-relaxed max-w-xl mb-10">
+      <p class="reveal delay-2 text-xl text-slate-400 font-medium leading-relaxed max-w-xl mb-10" data-i18n="hero.subtitle">
         Boostez votre conversion avec une expertise professionnelle et un design ultra-moderne conçu pour les leaders du marché.
       </p>
       <div class="reveal delay-3 flex flex-col sm:flex-row gap-4">
-        <a href="#contact" class="px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg glow-btn transition-all text-center">
+        <a href="#contact" class="px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg glow-btn transition-all text-center" data-i18n="hero.cta1">
           Lancer mon projet →
         </a>
         <button onclick="openVideoModal()" class="px-8 py-4 glass text-white font-bold rounded-xl text-lg hover:bg-white/5 transition-all flex items-center justify-center gap-2 group">
           <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform" style="font-size:22px">play_circle</span>
-          Voir la démo
+          <span data-i18n="hero.cta2">Voir la démo</span>
         </button>
       </div>
       <!-- Trust badges -->
@@ -362,23 +436,24 @@ tailwind.config = {
           <div class="w-8 h-8 rounded-full bg-purple-500/30 border-2 border-background-dark flex items-center justify-center text-xs font-bold text-purple-400">KB</div>
           <div class="w-8 h-8 rounded-full bg-orange-500/30 border-2 border-background-dark flex items-center justify-center text-xs font-bold text-orange-400">+9</div>
         </div>
-        <p class="text-slate-400 text-sm"><span class="text-white font-bold">100+</span> clients satisfaits ce mois</p>
+        <p class="text-slate-400 text-sm"><span class="text-white font-bold">100+</span> <span data-i18n="hero.trust">clients satisfaits ce mois</span></p>
       </div>
     </div>
 
     <div class="reveal delay-2 relative">
       <div class="relative rounded-2xl overflow-hidden glass p-2">
-        <img class="w-full h-[460px] object-cover rounded-xl"
-             src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjqF9tfMi8nd7GWkW0dbq2p0sZGywaqfrNjfQzlDLObLs8mqgn85N5U25bHNB6qJtHnVylJS3sUrH_MJ2RSExUK-3xBd457s7KAaVRasU-Kz15TXkJAx3ijJuIrBDXLLWBEZQ7PAGmzQDvqAvk8aZMgp2-hs5aBwSuLb_KRMgHXBUpd6sGn8Si7uwqirj4x7ACVax72rXJhqruSp9Vme78ZmvybQX78xAA63ylDDDrZkfT_kbNFxRMmipPynE6dBsQZbUM9_pZk2s"
-             alt="Analytics Dashboard"/>
+        <img class="w-full h-[460px] object-cover object-center rounded-xl hero-img"
+             src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1200&q=90&fit=crop"
+             alt="Analytics Dashboard"
+             loading="eager"/>
         <div class="absolute bottom-6 left-6 right-6 glass-primary p-5 rounded-xl">
           <div class="flex items-center gap-4">
             <div class="bg-primary/20 p-2.5 rounded-lg">
               <span class="material-symbols-outlined text-primary" style="font-size:20px">trending_up</span>
             </div>
             <div>
-              <p class="text-white font-bold text-lg">+324% Croissance</p>
-              <p class="text-slate-400 text-sm">Moyenne observée chez nos clients</p>
+              <p class="text-white font-bold text-lg" data-i18n="hero.growth">+324% Croissance</p>
+              <p class="text-slate-400 text-sm" data-i18n="hero.growth_sub">Moyenne observée chez nos clients</p>
             </div>
             <div class="ml-auto">
               <div class="w-16 h-8 relative">
@@ -445,17 +520,18 @@ tailwind.config = {
 <section class="py-24 px-6 bg-white/[0.015]" id="services">
   <div class="max-w-7xl mx-auto">
     <div class="reveal mb-16 text-center">
-      <span class="text-primary text-xs font-bold uppercase tracking-widest">Ce que nous offrons</span>
-      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4">Nos Services</h2>
-      <p class="text-slate-400 text-lg max-w-2xl mx-auto">Des solutions sur mesure pour transformer votre vision en résultats tangibles.</p>
+      <span class="text-primary text-xs font-bold uppercase tracking-widest" data-i18n="services.label">Ce que nous offrons</span>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4" data-i18n="services.title">Nos Services</h2>
+      <p class="text-slate-400 text-lg max-w-2xl mx-auto" data-i18n="services.subtitle">Des solutions sur mesure pour transformer votre vision en résultats tangibles.</p>
     </div>
     <div class="grid md:grid-cols-2 gap-8">
       <!-- Essentiel -->
       <div class="reveal service-card group relative overflow-hidden rounded-3xl glass">
         <div class="h-64 overflow-hidden relative">
-          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-3YddBb9FFdgughXh1xWPzulf7KD_8H9vyVU0klMnZgpXJydlnFltgP4QjOOPaKg3Rcysb7t6HAWQa5viRet_9IR3uLweOg2Rp7FGBqGtgPsYEZiNOE2oPSpLNkPB_jFyQVQvikt_wANqPJ9N4K0oZjEQefa7f-AW1sO8T07_XGMwWvPcSN6ep_USMOvxnXPrO0kb3Hir_GKOeF3Cb2Mp6evNdReR8mj8yBs_VRB-kfLp3BSeuMRKlLgVp9Lw7DNrmaEbpekZJuw"
-               alt="Digital Marketing"/>
+          <img class="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-110"
+               src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=90&fit=crop"
+               alt="Digital Marketing"
+               loading="lazy"/>
           <div class="absolute inset-0 bg-gradient-to-t from-[#0a0712] to-transparent"></div>
         </div>
         <div class="p-8">
@@ -487,9 +563,10 @@ tailwind.config = {
           ⭐ Populaire
         </div>
         <div class="h-64 overflow-hidden relative">
-          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-               src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0BTGaAgVZcCtG10hJjq4ZJ8LJ31V6FoWFzngl3unui6de1mgJ_SeKUup7zEY4bgS1K9r-5IC3u0QcUKwwsSzjHwns3DesPo7Cf2e8TighjJ5BumheHi8eZAzagR0r8CTavsbalMp7RDBvXqxTbJXLJ80e-FlvLNP4-2LOFw7n7tmQd0-_HOddMn9nUFr7Qa5wTVV-IZBeAcbBy8BbJW02AEL-McIuntPY60pd0NJLtDVLCVZWSNk8vDAquAp4u_TOCtk4kpSz1uI"
-               alt="Business Growth"/>
+          <img class="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+               src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=90&fit=crop"
+               alt="Business Growth"
+               loading="lazy"/>
           <div class="absolute inset-0 bg-gradient-to-t from-[#0a0712] to-transparent"></div>
         </div>
         <div class="p-8">
@@ -522,17 +599,17 @@ tailwind.config = {
 <section class="py-24 px-6" id="pricing">
   <div class="max-w-7xl mx-auto">
     <div class="reveal mb-4 text-center">
-      <span class="text-primary text-xs font-bold uppercase tracking-widest">Tarification</span>
-      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4">Tarification Transparente</h2>
-      <p class="text-slate-400 text-lg">Choisissez le plan qui correspond à vos ambitions.</p>
+      <span class="text-primary text-xs font-bold uppercase tracking-widest" data-i18n="pricing.label">Tarification</span>
+      <h2 class="text-4xl md:text-5xl font-black text-white mt-3 mb-4" data-i18n="pricing.title">Tarification Transparente</h2>
+      <p class="text-slate-400 text-lg" data-i18n="pricing.subtitle">Choisissez le plan qui correspond à vos ambitions.</p>
     </div>
     <!-- Annual toggle -->
     <div class="reveal flex items-center justify-center gap-4 mb-14">
-      <span class="text-slate-400 text-sm font-medium">Mensuel</span>
+      <span class="text-slate-400 text-sm font-medium" data-i18n="pricing.monthly">Mensuel</span>
       <div class="toggle-pill" id="billing-toggle" onclick="toggleBilling()">
         <div class="toggle-dot"></div>
       </div>
-      <span class="text-slate-400 text-sm font-medium">Annuel <span class="bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full font-bold ml-1">-20%</span></span>
+      <span class="text-slate-400 text-sm font-medium" data-i18n="pricing.annual">Annuel <span class="bg-primary/20 text-primary text-xs px-2 py-0.5 rounded-full font-bold ml-1">-20%</span></span>
     </div>
 
     <div class="grid lg:grid-cols-3 gap-8 items-start">
@@ -606,7 +683,7 @@ tailwind.config = {
 <section class="py-24 px-6 relative overflow-hidden" id="testimonials">
   <div class="max-w-7xl mx-auto">
     <div class="reveal flex items-center gap-4 mb-12">
-      <h2 class="text-3xl font-black text-white whitespace-nowrap">Ce que disent nos partenaires</h2>
+      <h2 class="text-3xl font-black text-white whitespace-nowrap" data-i18n="testimonials.title">Ce que disent nos partenaires</h2>
       <div class="h-px flex-grow bg-white/10"></div>
       <!-- Slider controls -->
       <div class="flex gap-2">
@@ -688,8 +765,8 @@ tailwind.config = {
 <section class="py-24 px-6 bg-white/[0.015]" id="faq">
   <div class="max-w-3xl mx-auto">
     <div class="reveal text-center mb-14">
-      <span class="text-primary text-xs font-bold uppercase tracking-widest">Questions fréquentes</span>
-      <h2 class="text-4xl font-black text-white mt-3">FAQ</h2>
+      <span class="text-primary text-xs font-bold uppercase tracking-widest" data-i18n="faq.label">Questions fréquentes</span>
+      <h2 class="text-4xl font-black text-white mt-3" data-i18n="faq.title">FAQ</h2>
     </div>
     <div class="space-y-4">
       <div class="reveal faq-item glass rounded-2xl overflow-hidden">
@@ -736,9 +813,9 @@ tailwind.config = {
 <section class="py-24 px-6" id="contact">
   <div class="max-w-2xl mx-auto">
     <div class="reveal text-center mb-12">
-      <span class="text-primary text-xs font-bold uppercase tracking-widest">Passez à l'action</span>
-      <h2 class="text-4xl font-black text-white mt-3 mb-4">Lancez votre projet</h2>
-      <p class="text-slate-400">Remplissez le formulaire et nous vous recontactons sous 24h.</p>
+      <span class="text-primary text-xs font-bold uppercase tracking-widest" data-i18n="contact.label">Passez à l'action</span>
+      <h2 class="text-4xl font-black text-white mt-3 mb-4" data-i18n="contact.title">Lancez votre projet</h2>
+      <p class="text-slate-400" data-i18n="contact.subtitle">Remplissez le formulaire et nous vous recontactons sous 24h.</p>
     </div>
 
     <div class="reveal glass p-10 rounded-3xl">
@@ -814,8 +891,8 @@ tailwind.config = {
   <div class="max-w-7xl mx-auto">
     <div class="grid md:grid-cols-4 gap-10 mb-12">
       <div class="md:col-span-2">
-        <div class="flex items-center gap-2 mb-4">
-          <img src="https://i.postimg.cc/htZLk4hK/LOGO-BOOSTMARK.png" alt="BoostMark Logo" class="h-10 w-auto object-contain" />
+        <div class="flex items-center mb-4">
+          <img src="https://i.postimg.cc/054mjc7j/jiko.png" alt="BoostMark Logo" class="h-10 w-auto object-contain" />
         </div>
         <p class="text-slate-500 text-sm leading-relaxed max-w-sm">
           L'agence SaaS de référence au Maroc pour la conversion digitale. Nous transformons votre vision en résultats mesurables.
@@ -1229,12 +1306,279 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 // ============================================================
+// LANGUAGE SWITCHER — Full i18n System
+// ============================================================
+const translations = {
+  fr: {
+    // Nav
+    "nav.services": "Services",
+    "nav.pricing": "Tarifs",
+    "nav.testimonials": "Avis",
+    "nav.faq": "FAQ",
+    "nav.contact": "Contact",
+    "nav.login": "Se connecter",
+    "nav.cta": "Démarrer",
+    // Mobile menu
+    "mobile.cta": "Démarrer maintenant →",
+    // Hero
+    "hero.badge": "Propulsé par l'IA & le Design",
+    "hero.subtitle": "Boostez votre conversion avec une expertise professionnelle et un design ultra-moderne conçu pour les leaders du marché.",
+    "hero.cta1": "Lancer mon projet →",
+    "hero.cta2": "Voir la démo",
+    "hero.trust": "clients satisfaits ce mois",
+    "hero.growth": "+324% Croissance",
+    "hero.growth_sub": "Moyenne observée chez nos clients",
+    // Stats
+    "stats.talents": "Talents",
+    "stats.talents_sub": "Experts Freelances",
+    "stats.volume": "Volume",
+    "stats.volume_sub": "Chiffre d'Affaires",
+    "stats.trust": "Confiance",
+    "stats.trust_sub": "Taux de Rétention",
+    "stats.speed": "Vitesse",
+    "stats.speed_sub": "Délai Moyen",
+    // Services
+    "services.label": "Ce que nous offrons",
+    "services.title": "Nos Services",
+    "services.subtitle": "Des solutions sur mesure pour transformer votre vision en résultats tangibles.",
+    // Pricing
+    "pricing.label": "Tarification",
+    "pricing.title": "Tarification Transparente",
+    "pricing.subtitle": "Choisissez le plan qui correspond à vos ambitions.",
+    "pricing.monthly": "Mensuel",
+    "pricing.annual": "Annuel",
+    // Testimonials
+    "testimonials.title": "Ce que disent nos partenaires",
+    // FAQ
+    "faq.label": "Questions fréquentes",
+    "faq.title": "FAQ",
+    // Contact
+    "contact.label": "Passez à l'action",
+    "contact.title": "Lancez votre projet",
+    "contact.subtitle": "Remplissez le formulaire et nous vous recontactons sous 24h.",
+    // WA button
+    "wa.btn": "Contactez-nous",
+  },
+  en: {
+    "nav.services": "Services",
+    "nav.pricing": "Pricing",
+    "nav.testimonials": "Reviews",
+    "nav.faq": "FAQ",
+    "nav.contact": "Contact",
+    "nav.login": "Sign in",
+    "nav.cta": "Get Started",
+    "mobile.cta": "Get Started Now →",
+    "hero.badge": "Powered by AI & Design",
+    "hero.subtitle": "Boost your conversion rate with professional expertise and ultra-modern design built for market leaders.",
+    "hero.cta1": "Launch my project →",
+    "hero.cta2": "Watch demo",
+    "hero.trust": "happy clients this month",
+    "hero.growth": "+324% Growth",
+    "hero.growth_sub": "Average across our clients",
+    "stats.talents": "Talent",
+    "stats.talents_sub": "Freelance Experts",
+    "stats.volume": "Volume",
+    "stats.volume_sub": "Revenue",
+    "stats.trust": "Trust",
+    "stats.trust_sub": "Retention Rate",
+    "stats.speed": "Speed",
+    "stats.speed_sub": "Average Delivery",
+    "services.label": "What we offer",
+    "services.title": "Our Services",
+    "services.subtitle": "Tailored solutions to turn your vision into tangible results.",
+    "pricing.label": "Pricing",
+    "pricing.title": "Transparent Pricing",
+    "pricing.subtitle": "Choose the plan that matches your ambitions.",
+    "pricing.monthly": "Monthly",
+    "pricing.annual": "Annual",
+    "testimonials.title": "What our partners say",
+    "faq.label": "Frequently asked questions",
+    "faq.title": "FAQ",
+    "contact.label": "Take action",
+    "contact.title": "Launch your project",
+    "contact.subtitle": "Fill in the form and we'll get back to you within 24h.",
+    "wa.btn": "Contact us",
+  },
+  ar: {
+    "nav.services": "الخدمات",
+    "nav.pricing": "الأسعار",
+    "nav.testimonials": "آراء",
+    "nav.faq": "الأسئلة",
+    "nav.contact": "اتصل بنا",
+    "nav.login": "تسجيل الدخول",
+    "nav.cta": "ابدأ الآن",
+    "mobile.cta": "ابدأ مشروعك الآن ←",
+    "hero.badge": "مدعوم بالذكاء الاصطناعي والتصميم",
+    "hero.subtitle": "عزّز معدل تحويلك بخبرة احترافية وتصميم عصري مبني لقادة السوق.",
+    "hero.cta1": "أطلق مشروعي ←",
+    "hero.cta2": "مشاهدة العرض",
+    "hero.trust": "عميل راضٍ هذا الشهر",
+    "hero.growth": "+٣٢٤٪ نمو",
+    "hero.growth_sub": "المتوسط لدى عملائنا",
+    "stats.talents": "الكفاءات",
+    "stats.talents_sub": "خبراء مستقلون",
+    "stats.volume": "الحجم",
+    "stats.volume_sub": "رقم الأعمال",
+    "stats.trust": "الثقة",
+    "stats.trust_sub": "معدل الاحتفاظ",
+    "stats.speed": "السرعة",
+    "stats.speed_sub": "متوسط التسليم",
+    "services.label": "ما نقدمه",
+    "services.title": "خدماتنا",
+    "services.subtitle": "حلول مخصصة لتحويل رؤيتك إلى نتائج ملموسة.",
+    "pricing.label": "الأسعار",
+    "pricing.title": "أسعار شفافة",
+    "pricing.subtitle": "اختر الخطة التي تناسب طموحاتك.",
+    "pricing.monthly": "شهري",
+    "pricing.annual": "سنوي",
+    "testimonials.title": "ماذا يقول شركاؤنا",
+    "faq.label": "الأسئلة الشائعة",
+    "faq.title": "الأسئلة",
+    "contact.label": "تحرك الآن",
+    "contact.title": "أطلق مشروعك",
+    "contact.subtitle": "املأ النموذج وسنتواصل معك خلال ٢٤ ساعة.",
+    "wa.btn": "تواصل معنا",
+  }
+};
+
+let currentLang = 'fr';
+
+function toggleLangDropdown() {
+  const dd = document.getElementById('lang-dropdown');
+  dd.classList.toggle('open');
+  // Close on outside click
+  setTimeout(() => {
+    document.addEventListener('click', closeLangDropdownOutside, { once: true });
+  }, 10);
+}
+
+function closeLangDropdownOutside(e) {
+  const switcher = document.getElementById('lang-switcher');
+  if (!switcher.contains(e.target)) {
+    document.getElementById('lang-dropdown').classList.remove('open');
+  }
+}
+
+function setLanguage(lang) {
+  if (lang === currentLang) {
+    document.getElementById('lang-dropdown').classList.remove('open');
+    return;
+  }
+
+  currentLang = lang;
+
+  // Fade out
+  document.body.classList.add('lang-transitioning');
+
+  setTimeout(() => {
+    // Update html attributes
+    const html = document.documentElement;
+    html.lang = lang;
+    html.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
+    // Update font for Arabic
+    if (lang === 'ar') {
+      document.body.style.fontFamily = "'Cairo', sans-serif";
+    } else {
+      document.body.style.fontFamily = "'Inter', sans-serif";
+    }
+
+    // Apply translations
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.dataset.i18n;
+      const t = translations[lang];
+      if (t && t[key]) {
+        // Preserve child elements (like spans inside)
+        if (el.children.length === 0) {
+          el.textContent = t[key];
+        } else {
+          // Only update text nodes
+          el.childNodes.forEach(node => {
+            if (node.nodeType === 3 && node.textContent.trim()) {
+              node.textContent = t[key];
+            }
+          });
+          el.innerHTML = t[key];
+        }
+      }
+    });
+
+    // Update flag & code in button
+    const flags = { fr: '🇫🇷', en: '🇬🇧', ar: '🇲🇦' };
+    const codes = { fr: 'FR', en: 'EN', ar: 'عر' };
+    document.getElementById('lang-flag-current').textContent = flags[lang];
+    document.getElementById('lang-code-current').textContent = codes[lang];
+
+    // Update active state in dropdown
+    ['fr','en','ar'].forEach(l => {
+      const opt = document.getElementById('lang-opt-' + l);
+      if (opt) opt.classList.toggle('active', l === lang);
+    });
+
+    // Update form placeholders
+    const placeholders = {
+      fr: { prenom: 'Votre prénom', nom: 'Votre nom', email: 'votre@email.com', tel: '+212 6XX XXX XXX', msg: 'Décrivez votre projet...' },
+      en: { prenom: 'Your first name', nom: 'Your last name', email: 'your@email.com', tel: '+1 XXX XXX XXXX', msg: 'Describe your project...' },
+      ar: { prenom: 'الاسم الأول', nom: 'اسم العائلة', email: 'بريدك@الإلكتروني.com', tel: '+212 6XX XXX XXX', msg: 'صف مشروعك...' },
+    };
+    const ph = placeholders[lang];
+    const fp = document.getElementById('f-prenom'); if(fp) fp.placeholder = ph.prenom;
+    const fn = document.getElementById('f-nom'); if(fn) fn.placeholder = ph.nom;
+    const fe = document.getElementById('f-email'); if(fe) fe.placeholder = ph.email;
+    const ft = document.getElementById('f-tel'); if(ft) ft.placeholder = ph.tel;
+    const fm = document.getElementById('f-message'); if(fm) fm.placeholder = ph.msg;
+
+    // Update form labels
+    const labels = {
+      fr: ['Prénom *', 'Nom *', 'Email *', 'Téléphone', 'Votre projet *'],
+      en: ['First Name *', 'Last Name *', 'Email *', 'Phone', 'Your Project *'],
+      ar: ['الاسم الأول *', 'اسم العائلة *', 'البريد الإلكتروني *', 'الهاتف', 'مشروعك *'],
+    };
+    const formLabels = document.querySelectorAll('#contact-form label');
+    if (formLabels.length >= 5) {
+      labels[lang].forEach((txt, i) => { if(formLabels[i]) formLabels[i].textContent = txt; });
+    }
+
+    // Update submit button text
+    const submitTexts = { fr: 'Envoyer ma demande →', en: 'Send my request →', ar: 'إرسال طلبي ←' };
+    const st = document.getElementById('submit-text');
+    if (st) st.textContent = submitTexts[lang];
+
+    // Update WhatsApp button
+    const waBtn = document.querySelector('.wa-pulse span:last-child');
+    if (waBtn && translations[lang]['wa.btn']) waBtn.textContent = translations[lang]['wa.btn'];
+
+    // Update page title
+    const titles = {
+      fr: 'BoostMark | Agence SaaS de Conversion Ultra-Moderne',
+      en: 'BoostMark | Ultra-Modern SaaS Conversion Agency',
+      ar: 'بوست مارك | وكالة تسويق رقمي متطورة'
+    };
+    document.title = titles[lang];
+
+    // Close dropdown
+    document.getElementById('lang-dropdown').classList.remove('open');
+
+    // Toast
+    const toasts = { fr: '🇫🇷 Langue: Français', en: '🇬🇧 Language: English', ar: '🇲🇦 اللغة: العربية' };
+    showToast(toasts[lang]);
+
+    // Fade back in
+    document.body.classList.remove('lang-transitioning');
+    document.body.classList.add('lang-ready');
+    setTimeout(() => document.body.classList.remove('lang-ready'), 300);
+
+  }, 200);
+}
+
+// ============================================================
 // KEYBOARD ACCESSIBILITY
 // ============================================================
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     closeVideoModal();
     closeMobileMenu();
+    document.getElementById('lang-dropdown').classList.remove('open');
   }
 });
 </script>
